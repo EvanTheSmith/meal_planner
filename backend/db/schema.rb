@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_205133) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "kind"
     t.integer "calories"
     t.integer "meal_id"
     t.datetime "created_at", precision: 6, null: false
