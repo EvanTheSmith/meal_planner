@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
     def index
       meals = Meal.all
-      render json: meals, except: [:created_at, :updated_at]
+      render json: meals, include: [:items]
     end
 end
