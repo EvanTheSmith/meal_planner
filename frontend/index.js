@@ -8,11 +8,13 @@ fetch('http://localhost:3000/meals')
 .then(response => response.json())
 .then(data => renderMeals(data));
 
+// This function will render the meals and their respective items into the table rows
 function renderMeals(theMeals) {
-    // This function will render the meals and their respective items into the table rows
     for (meal of theMeals) {
         let mealColumn = document.createElement("th"); // create Header Column for a Meal
-        mealsRow.appendChild(mealColumn); // Attach new column to Meals Row
+        mealColumn.innerText = meal.name; // Name meal
+        mealsRow.appendChild(mealColumn); // Attach meal to Meals Row
+
     }
 }
 
