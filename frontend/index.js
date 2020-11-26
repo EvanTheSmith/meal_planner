@@ -11,19 +11,21 @@ fetch('http://localhost:3000/meals')
 // This function will render Meals and their respective Items
 function renderMealsAndItems(theMeals) {
     for (meal of theMeals) { // Render Meals
-        let meal_TH = document.createElement("th"); // create TH for this Meal
-        meal_TH.innerText = meal.name;
-        mealsRow.appendChild(meal_TH); // Attach the meal's TH to Meals Row
+        let meal_TH = document.createElement("th"); meal_TH.innerText = meal.name;
+        mealsRow.appendChild(meal_TH); // Attach this meal to the Meals Row
 
-        let items_TD = document.createElement("td"); // create TD for all this Meal's items
-        itemsRow.appendChild(items_TD); // Append this TD to the Items Row
-        let itemsTable = document.createElement("table"); // create a table for all this Meal's items
+        let items_TD = document.createElement("td"); itemsRow.appendChild(items_TD);
+        let itemsTable = document.createElement("table"); // table for all this Meal's items
         
-        for (item of meal.items) { // Render Items for this Meal
-            let itemName = document.createElement("tr"); itemName.innerText = item.name;
-            itemsTable.appendChild(itemName);
-            items_TD.appendChild(itemsTable);
+        for (item of meal.items) { // Render Items for this Meal to the new table
+            let itemAttr = document.createElement("tr"); // a row for all this item's attributes
+            let itemName = document.createElement("td"); itemName.innerText = item.name;
+            let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
+            let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories;
+            itemAttr.appendChild(itemName); itemAttr.appendChild(itemKind); itemAttr.appendChild(itemCalories);
+            itemsTable.appendChild(itemAttr); // < ^ these two rows attach all the attributes
         }
+        items_TD.appendChild(itemsTable);
     }
 }
 
