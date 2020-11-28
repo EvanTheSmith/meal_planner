@@ -51,11 +51,3 @@ function renderMealsAndItems(theMeals) {
         items_TD.appendChild(itemsTable);
     }
 }
-
-// Function for counting the calories of a given meal
-function countCalories(meal) {
-    let calorieArray = [];
-    let reduceAlgo = (a, b) => a + b;
-    for (item of meal.items) { calorieArray.push(item.calories); }
-    return calorieArray.reduce(reduceAlgo, 0);
-}
