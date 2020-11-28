@@ -6,9 +6,10 @@ const ITEMS_ROW = document.getElementById("items_go_here");
 
 // The Class
 class Meal {
-    constructor(name, items) {
+    constructor(name, items, id) {
       this.name = name;
       this.items = items;
+      this.id = id;
     }
 
     countCalories() {
@@ -32,8 +33,8 @@ fetch(MEALS_URL)
 // This function will render Meals and their respective Items
 function renderMealsAndItems(theMeals) {
     for (meal of theMeals) { // Render Meals
-        let new_meal = new Meal(meal.name, meal.items);
-        let meal_TH = document.createElement("th");
+        let new_meal = new Meal(meal.name, meal.items, meal.id);
+        let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
         meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
         MEALS_ROW.appendChild(meal_TH);
 
