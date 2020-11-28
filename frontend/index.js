@@ -33,15 +33,13 @@ fetch(MEALS_URL)
 // This function will render Meals and their respective Items
 function renderMealsAndItems(theMeals) {
     for (meal of theMeals) { // Initial rendering of Meals
-        let new_meal = new Meal(meal.name, meal.items, meal.id);
-        let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
-        meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
-        MEALS_ROW.appendChild(meal_TH);
+        let newMeal = createMeal(meal);
+        MEALS_ROW.appendChild(newMeal);
 
         let items_TD = document.createElement("td"); ITEMS_ROW.appendChild(items_TD);
         let itemsTable = document.createElement("table"); // table for all this Meal's items
         
-        for (item of new_meal.items) { // Render Items for this Meal to the new table
+        for (item of meal.items) { // Render Items for this Meal to the new table
             let itemAttr = document.createElement("tr"); // a row for all this item's attributes
             let itemName = document.createElement("td"); itemName.innerText = item.name;
             let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
@@ -51,4 +49,11 @@ function renderMealsAndItems(theMeals) {
         }
         items_TD.appendChild(itemsTable);
     }
+}
+
+function createMeal(meal) {
+    let new_meal = new Meal(meal.name, meal.items, meal.id);
+    let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
+    meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
+    return meal_TH;
 }
