@@ -30,11 +30,10 @@ fetch(MEALS_URL)
 .then(data => renderMealsAndItems(data)); // Feed that data into my rendering function
 }
 
-// This function will render Meals and their respective Items
+// This function will perform the initial rendering of Meals and their respective Items
 function renderMealsAndItems(theMeals) {
-    for (meal of theMeals) { // Initial rendering of Meals
-        let newMeal = createMeal(meal);
-        MEALS_ROW.appendChild(newMeal);
+    for (meal of theMeals) {
+        createMeal(meal);
 
         let items_TD = document.createElement("td"); ITEMS_ROW.appendChild(items_TD);
         let itemsTable = document.createElement("table"); // table for all this Meal's items
@@ -51,9 +50,9 @@ function renderMealsAndItems(theMeals) {
     }
 }
 
-function createMeal(meal) {
+function createMeal(meal) { // this creates the node for a meal and appends it to MEALS_ROW
     let new_meal = new Meal(meal.name, meal.items, meal.id);
     let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
-    return meal_TH;
+    MEALS_ROW.appendChild(meal_TH);
 }
