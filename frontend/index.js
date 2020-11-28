@@ -12,7 +12,7 @@ fetch('http://localhost:3000/meals')
 function renderMealsAndItems(theMeals) {
     for (meal of theMeals) { // Render Meals
         let meal_TH = document.createElement("th");
-        let mealCalories = countCalories(meal.items);
+        let mealCalories = countCalories(meal);
         meal_TH.innerText = meal.name + " - "+mealCalories+" calories";
         mealsRow.appendChild(meal_TH);
 
@@ -24,17 +24,18 @@ function renderMealsAndItems(theMeals) {
             let itemName = document.createElement("td"); itemName.innerText = item.name;
             let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
             let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
-            itemAttr.appendChild(itemName); itemAttr.appendChild(itemKind); itemAttr.appendChild(itemCalories);
-            itemsTable.appendChild(itemAttr); // < ^ these two rows attach all the attributes
+            itemAttr.appendChild(itemName); itemAttr.appendChild(itemKind); itemAttr.appendChild(itemCalories); itemsTable.appendChild(itemAttr);
+            // ^ this row attaches all the attributes
         }
         items_TD.appendChild(itemsTable);
     }
 }
 
-function countCalories(mealItems) {
+// Function for counting the calories of a given meal
+function countCalories(meal) {
     let calorieArray = [];
     let reduceAlgo = (accumulator, currentValue) => accumulator + currentValue;
-    for (item of mealItems) { calorieArray.push(item.calories); }
+    for (item of meal.items) { calorieArray.push(item.calories); }
     return calorieArray.reduce(reduceAlgo, 0);
 }
 
