@@ -1,12 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+const HOST_URL = "http://localhost:3000"
+const MEALS_URL = `${HOST_URL}/meals/`
 
 let mealsRow = document.getElementById("meals_go_here"); // Meals Row 
 let itemsRow = document.getElementById("items_go_here"); // Items Row
 
+document.addEventListener('DOMContentLoaded', () => { fetchFood(); });
+
 // Initial fetch request needed to get data for rendering the page
-fetch('http://localhost:3000/meals')
+function fetchFood() {
+fetch(MEALS_URL)
 .then(response => response.json())
 .then(data => renderMealsAndItems(data));
+}
 
 // This function will render Meals and their respective Items
 function renderMealsAndItems(theMeals) {
@@ -34,9 +39,7 @@ function renderMealsAndItems(theMeals) {
 // Function for counting the calories of a given meal
 function countCalories(meal) {
     let calorieArray = [];
-    let reduceAlgo = (accumulator, currentValue) => accumulator + currentValue;
+    let reduceAlgo = (a, b) => a + b;
     for (item of meal.items) { calorieArray.push(item.calories); }
     return calorieArray.reduce(reduceAlgo, 0);
 }
-
-})
