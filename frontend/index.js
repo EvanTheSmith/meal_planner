@@ -1,9 +1,10 @@
 const HOST_URL = "http://localhost:3000"
 const MEALS_URL = `${HOST_URL}/meals/`
 
-let mealsRow = document.getElementById("meals_go_here"); // Meals Row 
-let itemsRow = document.getElementById("items_go_here"); // Items Row
+const MEALS_ROW = document.getElementById("meals_go_here");
+const ITEMS_ROW = document.getElementById("items_go_here");
 
+// This starts filling the page when the page is fully loaded
 document.addEventListener('DOMContentLoaded', () => { fetchFood(); });
 
 // Initial fetch request needed to get data for rendering the page
@@ -19,9 +20,9 @@ function renderMealsAndItems(theMeals) {
         let meal_TH = document.createElement("th");
         let mealCalories = countCalories(meal);
         meal_TH.innerText = meal.name + " - "+mealCalories+" calories";
-        mealsRow.appendChild(meal_TH);
+        MEALS_ROW.appendChild(meal_TH);
 
-        let items_TD = document.createElement("td"); itemsRow.appendChild(items_TD);
+        let items_TD = document.createElement("td"); ITEMS_ROW.appendChild(items_TD);
         let itemsTable = document.createElement("table"); // table for all this Meal's items
         
         for (item of meal.items) { // Render Items for this Meal to the new table
