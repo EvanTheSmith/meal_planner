@@ -32,7 +32,7 @@ fetch(MEALS_URL)
 
 // This function will render Meals and their respective Items
 function renderMealsAndItems(theMeals) {
-    for (meal of theMeals) { // Render Meals
+    for (meal of theMeals) { // Initial rendering of Meals
         let new_meal = new Meal(meal.name, meal.items, meal.id);
         let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
         meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
