@@ -35,18 +35,15 @@ function renderMealsAndItems(theMeals) {
     for (meal of theMeals) {
         createMeal(meal);
 
-        let items_TD = document.createElement("td"); ITEMS_ROW.appendChild(items_TD);
-        let itemsTable = document.createElement("table"); // table for all this Meal's items
+        let items_TD = document.createElement("td");
+        ITEMS_ROW.appendChild(items_TD);
+        let itemsTable = document.createElement("table"); // The table for all this meal's items
+        items_TD.appendChild(itemsTable);
         
         for (item of meal.items) { // Render Items for this Meal to the new table
-            let itemAttr = document.createElement("tr"); // a row for all this item's attributes
-            let itemName = document.createElement("td"); itemName.innerText = item.name;
-            let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
-            let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
-            itemAttr.appendChild(itemName); itemAttr.appendChild(itemKind); itemAttr.appendChild(itemCalories); itemsTable.appendChild(itemAttr);
-            // ^ this row attaches all the attributes
+            createItem(item, itemsTable);
         }
-        items_TD.appendChild(itemsTable);
+        
     }
 }
 
@@ -55,4 +52,13 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
     let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
     MEALS_ROW.appendChild(meal_TH);
+}
+
+function createItem(item, table) { // this creates the node for a meal and appends it to MEALS_ROW
+    let itemAttr = document.createElement("tr"); // a row for all this item's attributes
+    let itemName = document.createElement("td"); itemName.innerText = item.name;
+    let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
+    let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
+    itemAttr.appendChild(itemName); itemAttr.appendChild(itemKind); itemAttr.appendChild(itemCalories);
+    table.appendChild(itemAttr);
 }
