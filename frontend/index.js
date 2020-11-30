@@ -56,10 +56,17 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 }
 
 function createItem(item, itemsTable) { // this creates the node for a meal and appends it to MEALS_ROW
-    let itemAttr = document.createElement("tr"); // a row for all this item's attributes
+    let itemNode = document.createElement("tr"); // a row for all this item's attributes
     let itemName = document.createElement("td"); itemName.innerText = item.name;
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
-    itemAttr.appendChild(itemName); itemAttr.appendChild(itemKind); itemAttr.appendChild(itemCalories);
-    itemsTable.appendChild(itemAttr);
+    let delButton = document.createElement("td"); delButton.innerText = "DELETE";
+    delButton.addEventListener("click", deleteItem(itemNode, item));
+    itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(delButton);
+    itemsTable.appendChild(itemNode);
+}
+
+function deleteItem(element, item) {
+    element.remove();
+
 }
