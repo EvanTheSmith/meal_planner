@@ -17,6 +17,41 @@
         </tr>
       </table>
 
+      <br />
+
+      <form id="meal_form">
+
+        <input
+          type="text"
+          name="name"
+          value=""
+          placeholder="Name of food/drink"
+          class="text-input"
+        /><br />
+
+        <input type="radio" id="food" name="food_type" value="food">
+        <label for="food">food</label>
+        <input type="radio" id="drink" name="food_type" value="drink">
+        <label for="drink">drink</label><br>
+
+        <input
+          type="text"
+          name="calories"
+          value=""
+          placeholder="How many calories?"
+          class="text-input"
+        />
+
+        <br />
+
+        <input
+          type="submit"
+          name="submit"
+          value="Submit"
+          id="submit-button"
+        />
+      </form>
+
     <script src="index.js"></script>
   </body>
 </html>
