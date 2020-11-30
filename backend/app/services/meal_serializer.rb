@@ -4,7 +4,7 @@ class MealSerializer
   end
 
   def to_serialized_json
-    @meal.to_json(:include => {:items => {:only => [:name, :kind, :calories]}}, 
+    @meal.to_json(:include => {:items => {:only => [:id, :name, :kind, :calories]}}, 
     :except => [:updated_at, :created_at])
   end
     

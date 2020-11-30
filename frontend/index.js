@@ -1,5 +1,6 @@
 const HOST_URL = "http://localhost:3000"
 const MEALS_URL = `${HOST_URL}/meals/`
+const ITEMS_URL = `${HOST_URL}/items/`
 
 const MEALS_ROW = document.getElementById("meals_go_here");
 const ITEMS_ROW = document.getElementById("items_go_here");
@@ -68,5 +69,5 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 
 function deleteItem(element, item) {
     element.remove();
-
+    fetch(ITEMS_URL + item.id, {method: 'DELETE'});
 }
