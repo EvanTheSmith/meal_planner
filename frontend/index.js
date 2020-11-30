@@ -64,7 +64,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
     let items_TD = document.createElement("td");
     ITEMS_ROW.appendChild(items_TD);
-    let itemsTable = document.createElement("table"); itemsTable.setAttribute('id', "table_"+new_meal.id);
+    let itemsTable = document.createElement("table"); itemsTable.setAttribute('id', "table_"+new_meal.name);
     items_TD.appendChild(itemsTable);
     return itemsTable; // The table for all this meal's items
 }
@@ -89,10 +89,10 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 function submitNewItem(name, calories, type, meal) {
    let formData = { name: name, calories: calories, type: type, meal: meal};
    let configOBJ = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
-   fetch(ITEMS_URL, configObj)
+   fetch(ITEMS_URL, configOBJ)
    .then(response => response.json())
    .then(function(item) {
-
+       let itemsTable = document.querySelector('#table_'+meal);
        createItem(item, itemsTable) 
     })
    .catch(function(error) { console.log(error.message); });
