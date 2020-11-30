@@ -2,8 +2,11 @@ const HOST_URL = "http://localhost:3000"
 const MEALS_URL = `${HOST_URL}/meals/`
 const ITEMS_URL = `${HOST_URL}/items/`
 
+let submit_type = "create";
+
 const MEALS_ROW = document.getElementById("meals_go_here");
 const ITEMS_ROW = document.getElementById("items_go_here");
+const INPUT_FORM = document.querySelector("#meal-form");
 
 // The Class
 class Meal {
@@ -22,7 +25,17 @@ class Meal {
 }
 
 // This starts filling the page when the page is fully loaded
-document.addEventListener('DOMContentLoaded', () => { fetchFood(); });
+document.addEventListener('DOMContentLoaded', () => { 
+    fetchFood(); 
+
+    INPUT_FORM.addEventListener('submit', (event) => {
+        let itemName = document.querySelector('input[name="name"]').value;
+        let itemType = document.querySelector('input[name="image"]').value;
+        // if (submit_type=="create") { submitNewItem(); }
+        // else { editItem(); submit_type="create";}
+        event.preventDefault();
+       });
+});
 
 // Initial fetch request needed to get data for rendering the page
 function fetchFood() {
