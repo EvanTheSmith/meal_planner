@@ -61,7 +61,7 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     let itemName = document.createElement("td"); itemName.innerText = item.name;
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
-    let delButton = document.createElement("td"); delButton.innerText = "DELETE";
+    let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
     itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(delButton);
     itemsTable.appendChild(itemNode);
@@ -69,8 +69,8 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 
 function deleteItem(element, item) {
     element.remove();
-    refreshCalories();
-    fetch(ITEMS_URL + item.id, {method: 'DELETE'});
+    fetch(ITEMS_URL + item.id, {method: 'DELETE'})
+    .then( () => refreshCalories() )
 }
 
 function refreshCalories() {
