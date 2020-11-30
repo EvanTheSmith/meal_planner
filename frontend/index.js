@@ -61,11 +61,21 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     let itemName = document.createElement("td"); itemName.innerText = item.name;
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
+
+    let ediButton = document.createElement("td"); ediButton.id = "edit"; ediButton.innerText = "EDIT";
+    ediButton.addEventListener("click", function() {editItem(itemNode, item)});
+
     let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
-    itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(delButton);
+
+    itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(ediButton); itemNode.appendChild(delButton);
     itemsTable.appendChild(itemNode);
 }
+
+function editItem(element, item) {
+    console.log("This will help edit an item soon");
+}
+
 
 function deleteItem(element, item) {
     element.remove();
