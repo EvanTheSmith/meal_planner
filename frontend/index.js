@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     INPUT_FORM.addEventListener('submit', (event) => {
         let itemName = document.querySelector('input[name="name"]').value;
-        let itemType = document.querySelector('input[name="image"]').value;
-        // if (submit_type=="create") { submitNewItem(); }
+        let itemCalories = document.querySelector('input[name="calories"]').value;
+        let itemType; document.querySelector('input[name="food_type"]').checked ? itemType="food" : itemType="drink";
+        // if (submit_type=="create") { submitNewItem(itemName, itemCalories, itemType); }
         // else { editItem(); submit_type="create";}
         event.preventDefault();
        });
