@@ -29,12 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
     firstRender(); 
 
     INPUT_FORM.addEventListener('submit', (event) => {
+        event.preventDefault();
         let itemName = document.querySelector('input[name="name"]').value;
         let itemCalories = document.querySelector('input[name="calories"]').value;
         let itemType; document.querySelector('input[name="food_type"]').checked ? itemType="food" : itemType="drink";
-        // if (submit_type=="create") { submitNewItem(itemName, itemCalories, itemType); }
-        // else { editItem(); submit_type="create";}
-        event.preventDefault();
+        let itemMeal = document.querySelector('select').value;
+        if (submit_type=="create") { submitNewItem(itemName, itemCalories, itemType, itemMeal); } 
+        else { editItem(itemName, itemCalories, itemType, itemMeal); submit_type="create";}
        });
 });
 
@@ -49,11 +50,9 @@ fetch(MEALS_URL)
 function renderMealsAndItems(theMeals) {
     for (meal of theMeals) { // Render Meals
         let itemsTable = createMeal(meal); // Creates a meal and returns a table for items to be appended to
-        
         for (item of meal.items) { // Render Items for this Meal to the new table
             createItem(item, itemsTable);
         }
-        
     }
 }
 
@@ -65,7 +64,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
     let items_TD = document.createElement("td");
     ITEMS_ROW.appendChild(items_TD);
-    let itemsTable = document.createElement("table"); 
+    let itemsTable = document.createElement("table"); itemsTable.setAttribute('id', "table_"+new_meal.id);
     items_TD.appendChild(itemsTable);
     return itemsTable; // The table for all this meal's items
 }
@@ -84,6 +83,19 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 
     itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(ediButton); itemNode.appendChild(delButton);
     itemsTable.appendChild(itemNode);
+}
+
+// What the Submit button does when creating a new Food Item
+function submitNewItem(name, calories, type, meal) {
+   let formData = { name: name, calories: calories, type: type, meal: meal};
+   let configOBJ = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
+   fetch(ITEMS_URL, configObj)
+   .then(response => response.json())
+   .then(function(item) {
+
+       createItem(item, itemsTable) 
+    })
+   .catch(function(error) { console.log(error.message); });
 }
 
 // !!! NOT DONE YET !!! // 
