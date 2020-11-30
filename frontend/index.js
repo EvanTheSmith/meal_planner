@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => { fetchFood(); });
 function fetchFood() {
 fetch(MEALS_URL)
 .then(response => response.json())
-.then(data => renderMealsAndItems(data)); // Feed that data into my rendering function
+.then(meals => renderMealsAndItems(meals)); // Feed that data into my rendering function
 }
 
 // This function will perform the initial rendering of Meals and their respective Items
@@ -45,7 +45,7 @@ function renderMealsAndItems(theMeals) {
 
 function createMeal(meal) { // this creates the node for a meal and appends it to MEALS_ROW
     let new_meal = new Meal(meal.name, meal.items, meal.id);
-    let meal_TH = document.createElement("th"); meal_TH.setAttribute('meal-id', "meal_"+new_meal.id);
+    let meal_TH = document.createElement("th"); meal_TH.setAttribute('id', "meal_"+new_meal.id);
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
     MEALS_ROW.appendChild(meal_TH);
 
@@ -62,12 +62,25 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
     let delButton = document.createElement("td"); delButton.innerText = "DELETE";
-    delButton.addEventListener("click", deleteItem(itemNode, item));
+    delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
     itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(delButton);
     itemsTable.appendChild(itemNode);
 }
 
 function deleteItem(element, item) {
     element.remove();
+    refreshCalories();
     fetch(ITEMS_URL + item.id, {method: 'DELETE'});
+}
+
+function refreshCalories() {
+    fetch(MEALS_URL)
+    .then(response => response.json())
+    .then(function(meals) {
+        for (let meal of meals) {
+            let new_meal = new Meal(meal.name, meal.items, meal.id);
+            let theNode = document.querySelector("th#meal_"+new_meal.id);
+            theNode.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
+        }
+    } );
 }
