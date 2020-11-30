@@ -26,7 +26,7 @@ class Meal {
 
 // This starts filling the page when the page is fully loaded
 document.addEventListener('DOMContentLoaded', () => { 
-    fetchFood(); 
+    firstRender(); 
 
     INPUT_FORM.addEventListener('submit', (event) => {
         let itemName = document.querySelector('input[name="name"]').value;
@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
        });
 });
 
-// Initial fetch request needed to get data for rendering the page
-function fetchFood() {
+// Initial fetch request and render trigger needed to get data for the page
+function firstRender() {
 fetch(MEALS_URL)
 .then(response => response.json())
-.then(meals => renderMealsAndItems(meals)); // Feed that data into my rendering function
+.then(meals => renderMealsAndItems(meals));
 }
 
 // This function will perform the initial rendering of Meals and their respective Items
@@ -86,10 +86,10 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     itemsTable.appendChild(itemNode);
 }
 
+// !!! NOT DONE YET !!! // 
 function editItem(element, item) {
     console.log("This will help edit an item soon");
 }
-
 
 function deleteItem(element, item) {
     element.remove();

@@ -21,6 +21,8 @@
 
       <form id="meal-form">
 
+      <p>Add a new meal item below:</p>
+
         <input
           type="text"
           name="name"
@@ -41,6 +43,13 @@
           placeholder="How many calories?"
           class="text-input"
         /><br />
+
+        <label for="meal">Select a meal:</label>
+        <select name="meal" id="meal">
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        </select><br />
 
         <input
           type="submit"
