@@ -32,10 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         let itemName = document.querySelector('input[name="name"]').value;
         let itemCalories = document.querySelector('input[name="calories"]').value;
-        let itemType; document.querySelector('input[name="food_type"]').checked ? itemType="food" : itemType="drink";
+        let itemKind; document.querySelector('input[name="item_kind"]').checked ? itemKind="food" : itemKind="drink";
         let itemMeal = document.querySelector('select').value;
-        if (submit_type=="create") { submitNewItem(itemName, itemCalories, itemType, itemMeal); } 
-        else { editItem(itemName, itemCalories, itemType, itemMeal); submit_type="create";}
+        if (submit_type=="create") { 
+          submitNewItem(itemName, itemCalories, itemKind, itemMeal); 
+        } else { 
+          editItem(itemName, itemCalories, itemKind, itemMeal); submit_type="create";
+        }
        });
 });
 
@@ -85,23 +88,21 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     itemsTable.appendChild(itemNode);
 }
 
-// What the Submit button does when creating a new Food Item
-function submitNewItem(name, calories, type, meal) {
-   let formData = { name: name, calories: calories, type: type, meal: meal};
+// What the Submit button does when creating a new Food Item:
+
+function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
+   let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal};
+   let itemsTable = document.querySelector('#table_'+itemMeal);
    let configOBJ = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
    fetch(ITEMS_URL, configOBJ)
    .then(response => response.json())
-   .then(function(item) {
-       let itemsTable = document.querySelector('#table_'+meal);
-       createItem(item, itemsTable) 
-    })
-   .catch(function(error) { console.log(error.message); });
+   .then(item => console.log(item))
 }
 
-// !!! NOT DONE YET !!! // 
-function editItem(element, item) {
-    console.log("This will help edit an item soon");
-}
+// !
+// function editItem(element, item) {
+//     console.log("This will help edit an item soon");
+// }
 
 function deleteItem(element, item) {
     element.remove();
