@@ -1,6 +1,7 @@
 const HOST_URL = "http://localhost:3000"
 const MEALS_URL = `${HOST_URL}/meals/`
 const ITEMS_URL = `${HOST_URL}/items/`
+const CALORIES_URL = `${HOST_URL}/items/calories`
 
 let submit_type = "create";
 
@@ -26,6 +27,8 @@ class Meal {
 
 // This starts filling the page when the page is fully loaded
 document.addEventListener('DOMContentLoaded', () => { 
+    testCalories()
+
     firstRender(); 
     let submitButton = document.getElementById("submit-button");
     submitButton.addEventListener('click', (event) => {
@@ -158,4 +161,10 @@ function refreshCalories() {
             theNode.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
         }
     } );
+}
+
+function testCalories() {
+    fetch(CALORIES_URL)
+    .then(response => response.json())
+    .then(calories => console.log(calories));
 }
