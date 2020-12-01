@@ -116,6 +116,7 @@ function editButton(element, item) {
         document.querySelector('input[name="calories"]').value = item.calories;
         let radioBtn = document.querySelectorAll('input[name="item_kind"]');
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
+        document.querySelector('select').value = "Breakfast";
 
         for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
     });
