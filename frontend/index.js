@@ -98,6 +98,7 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
    fetch(ITEMS_URL, configuration)
    .then(response => response.json())
    .then(food => createItem(food, itemsTable))
+   .then(() => refreshCalories())
    .catch(error => console.log(error.message));
 }
 
