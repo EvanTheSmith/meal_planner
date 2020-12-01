@@ -29,16 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
     firstRender(); 
 
     INPUT_FORM.addEventListener('submit', (event) => {
-        event.preventDefault();
+
         let itemName = document.querySelector('input[name="name"]').value;
         let itemCalories = document.querySelector('input[name="calories"]').value;
         let itemKind; document.querySelector('input[name="item_kind"]').checked ? itemKind="food" : itemKind="drink";
         let itemMeal = document.querySelector('select').value;
-        if (submit_type=="create") { 
-          submitNewItem(itemName, itemCalories, itemKind, itemMeal); 
+        if (submit_type=="create") { submitNewItem(itemName, itemCalories, itemKind, itemMeal); 
         } else { 
           editItem(itemName, itemCalories, itemKind, itemMeal); submit_type="create";
         }
+        event.preventDefault();
        });
 });
 
@@ -91,18 +91,20 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 // What the Submit button does when creating a new Food Item:
 
 function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
-   let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal};
+   let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
    let itemsTable = document.querySelector('#table_'+itemMeal);
-   let configOBJ = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
-   fetch(ITEMS_URL, configOBJ)
+   let configuration = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
+
+   fetch(ITEMS_URL, configuration)
    .then(response => response.json())
-   .then(item => console.log(item))
+   .then(food => createItem(food, itemsTable))
+   .catch(error => console.log(error.message));
 }
 
-// !
-// function editItem(element, item) {
-//     console.log("This will help edit an item soon");
-// }
+// EDIT ITEM FUNCTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function editItem(element, item) {
+    console.log("This will help edit an item soon");
+}
 
 function deleteItem(element, item) {
     element.remove();
