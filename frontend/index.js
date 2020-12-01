@@ -27,9 +27,7 @@ class Meal {
 // This starts filling the page when the page is fully loaded
 document.addEventListener('DOMContentLoaded', () => { 
     firstRender(); 
-
     INPUT_FORM.addEventListener('submit', (event) => {
-
         let itemName = document.querySelector('input[name="name"]');
         let itemCalories = document.querySelector('input[name="calories"]');
         let itemKind; document.querySelector('input[name="item_kind"]').checked ? itemKind="food" : itemKind="drink";
@@ -39,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             itemName.value = ""; itemCalories.value = ""; itemMeal.value = "Breakfast";
             document.querySelector('input[name="item_kind"]') = checked;
         } else { 
-            editItem(itemName, itemCalories, itemKind, itemMeal); submit_type="create";
+            editItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
+            submit_type="create";
         }
         event.preventDefault();
        });
@@ -82,7 +81,7 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
 
     let ediButton = document.createElement("td"); ediButton.id = "edit"; ediButton.innerText = "EDIT";
-    ediButton.addEventListener("click", function() {editItem(itemNode, item)});
+    ediButton.addEventListener("click", function() {editButton(itemNode, item)});
 
     let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
@@ -91,8 +90,7 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     itemsTable.appendChild(itemNode);
 }
 
-// What the Submit button does when creating a new Food Item:
-
+// Create Item function (Submit Button)
 function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
    let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
    let itemsTable = document.querySelector('#table_'+itemMeal);
@@ -105,11 +103,18 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
    .catch(error => console.log(error.message));
 }
 
-// EDIT ITEM FUNCTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function editItem(element, item) {
+// Edit Item function (Submit Button)
+function editButton(element, item) {
+    submit_type = "edit";
     console.log("This will help edit an item soon");
 }
 
+// Edit Item function (Submit Button)
+function editItem(itemName, itemCalories, itemKind, itemMeal) {
+    console.log("This will help edit an item soon");
+}
+
+// Delete Item function
 function deleteItem(element, item) {
     element.remove();
     fetch(ITEMS_URL + item.id, {method: 'DELETE'})
