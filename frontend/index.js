@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submit_type=="create") {
             submitNewItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
             itemName.value = ""; itemCalories.value = ""; itemMeal.value = "Breakfast";
-            document.querySelector('input[name="item_kind"]') = checked;
+            document.querySelector('input[name="item_kind"]').checked = true;
         } else { 
             editItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
             submit_type="create";
@@ -76,7 +76,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
 function createItem(item, itemsTable) { // this creates the node for a meal and appends it to MEALS_ROW
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
-    let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('item-id', item.id)
+    let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
 
@@ -107,7 +107,18 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
 function editButton(element, item) {
     submit_type = "edit";
     document.querySelector("p#form-text").innerText = "Edit your meal item below:";
-    console.log(element);
+    let itemID = element.querySelector('td').id;
+    document.querySelector('input[name="submit"]').value = "Edit";
+    fetch(ITEMS_URL+itemID).then(response => response.json()).then(function(item) {
+        console.log(item);
+        // Update Form Values from Database Object
+        document.querySelector('input[name="name"]').value = item.name;
+        document.querySelector('input[name="calories"]').value = item.calories;
+        let radioBtn = document.querySelectorAll('input[name="item_kind"]');
+        if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
+
+        for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
+    });
 }
 
 // Edit Item function (Submit Button)
