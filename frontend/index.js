@@ -27,7 +27,8 @@ class Meal {
 // This starts filling the page when the page is fully loaded
 document.addEventListener('DOMContentLoaded', () => { 
     firstRender(); 
-    INPUT_FORM.addEventListener('submit', (event) => {
+    let submitButton = document.getElementById("submit-button");
+    submitButton.addEventListener('click', (event) => {
         let itemName = document.querySelector('input[name="name"]');
         let itemCalories = document.querySelector('input[name="calories"]');
         let itemKind; document.querySelector('input[name="item_kind"]').checked ? itemKind="food" : itemKind="drink";
@@ -116,6 +117,9 @@ function editButton(element, item) {
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
         document.querySelector('select').value = item.meal.name;
         // for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
+        let cancelButton = document.createElement("input"); cancelButton.type="submit"; cancelButton.value="Cancel"; cancelButton.name="cancel";
+        INPUT_FORM.appendChild(cancelButton);
+        cancelButton.addEventListener('click', (event) => { event.preventDefault(); resetForm(); cancelButton.remove(); });
     });
 }
 
