@@ -4,6 +4,6 @@ class Item < ApplicationRecord
     def self.count_all_calories
         rubyArray = []
         Item.all.each {|i| rubyArray << i.calories }
-        return rubyArray.reduce(0, :+)
+        return {calories: rubyArray.reduce(0, :+)}
     end
 end
