@@ -117,9 +117,11 @@ function editButton(element, item) {
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
         document.querySelector('select').value = item.meal.name;
         // for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
-        let cancelButton = document.createElement("input"); cancelButton.type="submit"; cancelButton.value="Cancel"; cancelButton.name="cancel";
+        if (!document.getElementById("cancel-button")) { // Prevents multiple cancel buttons from being made lol
+        let cancelButton = document.createElement("input"); cancelButton.type="submit"; cancelButton.value="Cancel"; cancelButton.id="cancel-button";
         INPUT_FORM.appendChild(cancelButton);
         cancelButton.addEventListener('click', (event) => { event.preventDefault(); resetForm(); cancelButton.remove(); });
+        }
     });
 }
 
