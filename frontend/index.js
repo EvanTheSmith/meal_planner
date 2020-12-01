@@ -76,7 +76,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
 function createItem(item, itemsTable) { // this creates the node for a meal and appends it to MEALS_ROW
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
-    let itemName = document.createElement("td"); itemName.innerText = item.name;
+    let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('item-id', item.id)
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
 
@@ -103,10 +103,11 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
    .catch(error => console.log(error.message));
 }
 
-// Edit Item function (Submit Button)
+// Edit Button function (EDIT)
 function editButton(element, item) {
     submit_type = "edit";
-    console.log("This will help edit an item soon");
+    document.querySelector("p#form-text").innerText = "Edit your meal item below:";
+    console.log(element);
 }
 
 // Edit Item function (Submit Button)

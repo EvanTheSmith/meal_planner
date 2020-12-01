@@ -1,4 +1,8 @@
 class ItemsController < ApplicationController
+    def show
+        item = Item.find(params[:id])
+        render json: item;
+    end
 
     def create
         meal = Meal.find_by(name: params[:meal]);
