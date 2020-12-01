@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
     def show
         item = Item.find(params[:id])
-        # render json: item;
         render json: ItemSerializer.new(item).to_serialized_json
     end
 
@@ -14,6 +13,10 @@ class ItemsController < ApplicationController
     def destroy
         item = Item.find(params[:id])
         item.destroy
-    end 
+    end
+
+    def calories
+        render json: Item.count_all_calories
+    end
 
 end
