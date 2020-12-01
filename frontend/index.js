@@ -30,13 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     INPUT_FORM.addEventListener('submit', (event) => {
 
-        let itemName = document.querySelector('input[name="name"]').value;
-        let itemCalories = document.querySelector('input[name="calories"]').value;
+        let itemName = document.querySelector('input[name="name"]');
+        let itemCalories = document.querySelector('input[name="calories"]');
         let itemKind; document.querySelector('input[name="item_kind"]').checked ? itemKind="food" : itemKind="drink";
-        let itemMeal = document.querySelector('select').value;
-        if (submit_type=="create") { submitNewItem(itemName, itemCalories, itemKind, itemMeal); 
+        let itemMeal = document.querySelector('select');
+        if (submit_type=="create") {
+            submitNewItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
+            itemName.value = ""; itemCalories.value = ""; itemMeal.value = "Breakfast";
         } else { 
-          editItem(itemName, itemCalories, itemKind, itemMeal); submit_type="create";
+            editItem(itemName, itemCalories, itemKind, itemMeal); submit_type="create";
         }
         event.preventDefault();
        });
