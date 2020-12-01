@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submit_type=="create") {
             submitNewItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
             itemName.value = ""; itemCalories.value = ""; itemMeal.value = "Breakfast";
+            document.querySelector('input[name="item_kind"]') = checked;
         } else { 
             editItem(itemName, itemCalories, itemKind, itemMeal); submit_type="create";
         }
