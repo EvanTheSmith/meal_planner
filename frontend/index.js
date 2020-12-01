@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let itemMeal = document.querySelector('select');
         if (submit_type=="create") {
             submitNewItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
-            itemName.value = ""; itemCalories.value = ""; itemMeal.value = "Breakfast";
-            document.querySelector('input[name="item_kind"]').checked = true;
+            resetForm();
         } else { 
             editItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
             submit_type="create";
@@ -110,15 +109,13 @@ function editButton(element, item) {
     let itemID = element.querySelector('td').id;
     document.querySelector('input[name="submit"]').value = "Edit";
     fetch(ITEMS_URL+itemID).then(response => response.json()).then(function(item) {
-        console.log(item);
         // Update Form Values from Database Object
         document.querySelector('input[name="name"]').value = item.name;
         document.querySelector('input[name="calories"]').value = item.calories;
         let radioBtn = document.querySelectorAll('input[name="item_kind"]');
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
-        document.querySelector('select').value = "Breakfast";
-
-        for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
+        document.querySelector('select').value = item.meal.name;
+        // for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
     });
 }
 
@@ -132,6 +129,17 @@ function deleteItem(element, item) {
     element.remove();
     fetch(ITEMS_URL + item.id, {method: 'DELETE'})
     .then( () => refreshCalories() )
+    resetForm();
+}
+
+function resetForm() {
+    submit_type = "create";
+    document.querySelector('input[name="submit"]').value = "Submit";
+    document.querySelector("p#form-text").innerText = "Add a new meal item below:";
+    document.querySelector('input[name="name"]').value = "";
+    document.querySelector('input[name="calories"]').value = "";
+    document.querySelector('select').value = "Breakfast";
+    document.querySelector('input[name="item_kind"]').checked = true;
 }
 
 function refreshCalories() {
