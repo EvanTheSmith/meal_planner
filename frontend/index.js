@@ -27,9 +27,8 @@ class Meal {
 
 // This starts filling the page when the page is fully loaded
 document.addEventListener('DOMContentLoaded', () => { 
-    testCalories()
-
     firstRender(); 
+    renderTotalCalories();
     let submitButton = document.getElementById("submit-button");
     submitButton.addEventListener('click', (event) => {
         let itemName = document.querySelector('input[name="name"]');
@@ -161,10 +160,14 @@ function refreshCalories() {
             theNode.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
         }
     } );
+    renderTotalCalories()
 }
 
-function testCalories() {
+function renderTotalCalories() {
     fetch(CALORIES_URL)
     .then(response => response.json())
-    .then(calories => console.log(calories));
+    .then(function(calOBJ) { 
+        let calBox = document.getElementById("total-calories");
+        calBox.innerText = "Total Calories: "+calOBJ.calories;
+    });
 }
