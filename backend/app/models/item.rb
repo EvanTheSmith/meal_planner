@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
     belongs_to :meal
+    validates :name, presence: true
+    validates :calories, presence: true
 
     def self.count_all_calories
         rubyArray = []
