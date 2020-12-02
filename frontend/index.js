@@ -95,8 +95,10 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 }
 
 function editItem(item, itemsTable) { // this edits an existing node, moving it to a new table if necessary
-    console.log(item);
-    console.log(itemsTable);
+    if(item.meal_id == itemsTable.getAttribute("meal-id")) {
+        console.log("The food item is already in the right table");
+    } else {console.log("the food item needs to be MOVED!");}
+
 }
 
 // Create Item Function (after clicking Submit Button)
@@ -181,7 +183,6 @@ function refreshCalories() {
     .then(function(meals) {
         for (let meal of meals) {
             let new_meal = new Meal(meal.name, meal.items, meal.id);
-            // let theNode = document.querySelector("th#meal_"+new_meal.id);
             let theNode = document.querySelector('[meal-id'+'="'+new_meal.id+'"]');
             theNode.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
         }
