@@ -63,13 +63,17 @@ function renderMealsAndItems(theMeals) {
 
 function createMeal(meal) { // this creates the node for a meal and appends it to MEALS_ROW
     let new_meal = new Meal(meal.name, meal.items, meal.id);
-    let meal_TH = document.createElement("th"); meal_TH.setAttribute('id', "meal_"+new_meal.id);
+    let meal_TH = document.createElement("th");
+    // meal_TH.setAttribute('id', "meal_"+new_meal.id);
+    meal_TH.setAttribute('meal-id', new_meal.id);
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
     MEALS_ROW.appendChild(meal_TH);
 
     let items_TD = document.createElement("td");
     ITEMS_ROW.appendChild(items_TD);
-    let itemsTable = document.createElement("table"); itemsTable.setAttribute('id', "table_"+new_meal.name);
+    let itemsTable = document.createElement("table");
+    itemsTable.setAttribute('id', "table_"+new_meal.name);
+    itemsTable.setAttribute('meal-id', new_meal.id);
     items_TD.appendChild(itemsTable);
     return itemsTable; // The table for all this meal's items
 }
@@ -91,7 +95,8 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 }
 
 function editItem(item, itemsTable) { // this edits an existing node, moving it to a new table if necessary
-    console.log("Edit Item function is calling correctly.")
+    console.log(item);
+    console.log(itemsTable);
 }
 
 // Create Item Function (after clicking Submit Button)
