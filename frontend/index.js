@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitNewItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
             resetForm();
         } else { 
-            editItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
-            submit_type="create";
+            submitedEditedItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
         }
         event.preventDefault();
        });
@@ -118,8 +117,8 @@ function editButton(element, item) {
         let radioBtn = document.querySelectorAll('input[name="item_kind"]');
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
         document.querySelector('select').value = item.meal.name;
-        // for (i = 0; i < 3; i++) { console.log(element.querySelectorAll('td')[i]); }
-        if (!document.getElementById("cancel-button")) { // Prevents multiple cancel buttons from being made lol
+      // Prevent multiple cancel buttons from being made
+        if (!document.getElementById("cancel-button")) {
         let cancelButton = document.createElement("input"); cancelButton.type="submit"; cancelButton.value="Cancel"; cancelButton.id="cancel-button";
         INPUT_FORM.appendChild(cancelButton);
         cancelButton.addEventListener('click', (event) => { event.preventDefault(); resetForm(); cancelButton.remove(); });
@@ -128,8 +127,13 @@ function editButton(element, item) {
 }
 
 // Edit Item function (Submit Button)
-function editItem(itemName, itemCalories, itemKind, itemMeal) {
+function submitedEditedItem(itemName, itemCalories, itemKind, itemMeal) {
+    let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
+    let itemsTable = document.querySelector('#table_'+itemMeal);
+    let configuration = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
+
     console.log("This will help edit an item soon");
+    submit_type="create";
 }
 
 // Delete Item function
