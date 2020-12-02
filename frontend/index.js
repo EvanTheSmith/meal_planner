@@ -95,9 +95,9 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
 }
 
 function editItem(item, itemsTable) { // this edits an existing node, moving it to a new table if necessary
-    if(item.meal_id == itemsTable.getAttribute("meal-id")) {
-        console.log("The food item is already in the right table");
-    } else {console.log("the food item needs to be MOVED!");}
+    // if(item.meal_id == itemsTable.getAttribute("meal-id")) {
+    console.log(item);
+    console.log(itemsTable);
 
 }
 
@@ -132,6 +132,7 @@ function editButton(element, item) {
         let radioBtn = document.querySelectorAll('input[name="item_kind"]');
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
         document.querySelector('select').value = item.meal.name;
+        document.querySelector('select').setAttribute("prev-meal", item.meal.id);
       // Prevent multiple cancel buttons from being made
         if (!document.getElementById("cancel-button")) {
         let cancelButton = document.createElement("input"); cancelButton.type="submit"; cancelButton.value="Cancel"; cancelButton.id="cancel-button";
@@ -144,14 +145,14 @@ function editButton(element, item) {
 // Edit Item Function (after clicking Edit Button)
 function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
-    let itemsTable = document.querySelector('#table_'+itemMeal);
+    let NEWitemsTable = document.querySelector('#table_'+itemMeal);
     let configuration = { method: "PATCH", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
 
     fetch(ITEMS_URL+itemID, configuration)
     .then(response => response.json())
     .then(function(food) {
         if(food.id) {
-            editItem(food, itemsTable);
+            editItem(food, NEWitemsTable);
             refreshCalories();
             resetForm();
         } else {window.alert("Error(s): "+food);}
@@ -173,6 +174,7 @@ function resetForm() {
     document.querySelector('input[name="name"]').value = "";
     document.querySelector('input[name="name"]').id = "0";
     document.querySelector('input[name="calories"]').value = "";
+    document.querySelector('select').setAttribute("prev-meal", 0);
     document.querySelector('select').value = "Breakfast";
     document.querySelector('input[name="item_kind"]').checked = true;
 }
