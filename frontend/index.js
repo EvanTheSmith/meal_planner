@@ -37,9 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let itemMeal = document.querySelector('select');
         if (submit_type=="create") {
             submitNewItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
-            resetForm();
         } else { 
-            submitedEditedItem(itemName.value, itemCalories.value, itemKind, itemMeal.value);
+            submitedEditedItem(itemName.id, itemName.value, itemCalories.value, itemKind, itemMeal.value);
         }
         event.preventDefault();
        });
@@ -91,7 +90,11 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     itemsTable.appendChild(itemNode);
 }
 
-// Create Item function (Submit Button)
+function editItem(item, itemsTable) { // this edits an existing node, moving it to a new table if necessary
+    console.log("Edit Item function is calling correctly.")
+}
+
+// Create Item Function (after clicking Submit Button)
 function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
    let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
    let itemsTable = document.querySelector('#table_'+itemMeal);
@@ -99,9 +102,13 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
 
    fetch(ITEMS_URL, configuration)
    .then(response => response.json())
-   .then(food => createItem(food, itemsTable))
-   .then(() => refreshCalories())
-   .catch(error => console.log(error.message));
+   .then(function(food) {
+    if(food.id) {
+        createItem(food, itemsTable);
+        refreshCalories();
+        resetForm();
+    } else {window.alert("Error(s): "+food);}
+    });
 }
 
 // Edit Button function (EDIT)
@@ -113,6 +120,7 @@ function editButton(element, item) {
     fetch(ITEMS_URL+itemID).then(response => response.json()).then(function(item) {
         // Update Form Values from Database Object
         document.querySelector('input[name="name"]').value = item.name;
+        document.querySelector('input[name="name"]').id = itemID;
         document.querySelector('input[name="calories"]').value = item.calories;
         let radioBtn = document.querySelectorAll('input[name="item_kind"]');
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
@@ -126,19 +134,21 @@ function editButton(element, item) {
     });
 }
 
-// Edit Item function (Submit Button)
-function submitedEditedItem(itemName, itemCalories, itemKind, itemMeal) {
+// Edit Item Function (after clicking Edit Button)
+function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let itemsTable = document.querySelector('#table_'+itemMeal);
     let configuration = { method: "PATCH", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
 
-    fetch(ITEMS_URL, configuration)
+    fetch(ITEMS_URL+itemID, configuration)
     .then(response => response.json())
-    .then(food => console.log(food))
-    // .then(food => createItem(food, itemsTable))
-    // .then(() => refreshCalories())
-    // .catch(error => console.log(error.message));
-    // submit_type="create";
+    .then(function(food) {
+        if(food.id) {
+            editItem(food, itemsTable);
+            refreshCalories();
+            resetForm();
+        } else {window.alert("Error(s): "+food);}
+    });
 }
 
 // Delete Item function
@@ -154,6 +164,7 @@ function resetForm() {
     document.querySelector('input[name="submit"]').value = "Submit";
     document.querySelector("p#form-text").innerText = "Add a new meal item below:";
     document.querySelector('input[name="name"]').value = "";
+    document.querySelector('input[name="name"]').id = "0";
     document.querySelector('input[name="calories"]').value = "";
     document.querySelector('select').value = "Breakfast";
     document.querySelector('input[name="item_kind"]').checked = true;

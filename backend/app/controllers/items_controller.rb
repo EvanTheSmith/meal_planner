@@ -6,15 +6,21 @@ class ItemsController < ApplicationController
 
     def create
         meal = Meal.find_by(name: params[:meal]);
-        item = Item.create(name: params[:name], calories: params[:calories], kind: params[:kind], meal: meal);
-        render json: item;
+        item = Item.new(name: params[:name], calories: params[:calories], kind: params[:kind], meal: meal);
+
+        if item.save
+          render json: item;
+        else
+          render json: item.errors.full_messages;
+        end
     end 
 
     def patch
         meal = Meal.find_by(name: params[:meal]);
         item = Item.find(params[:id])
         item.update(name: params[:name], calories: params[:calories], kind: params[:kind], meal: meal);
-        if meal.save
+        
+        if item.save
           render json: item;
         else
           render json: item.errors.full_messages;
