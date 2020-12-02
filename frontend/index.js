@@ -130,10 +130,15 @@ function editButton(element, item) {
 function submitedEditedItem(itemName, itemCalories, itemKind, itemMeal) {
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let itemsTable = document.querySelector('#table_'+itemMeal);
-    let configuration = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
+    let configuration = { method: "PATCH", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
 
-    console.log("This will help edit an item soon");
-    submit_type="create";
+    fetch(ITEMS_URL, configuration)
+    .then(response => response.json())
+    .then(food => console.log(food))
+    // .then(food => createItem(food, itemsTable))
+    // .then(() => refreshCalories())
+    // .catch(error => console.log(error.message));
+    // submit_type="create";
 }
 
 // Delete Item function
