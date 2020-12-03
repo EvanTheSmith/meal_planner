@@ -7,7 +7,6 @@ let submit_type = "create";
 
 const MEALS_ROW = document.getElementById("meals_go_here");
 const ITEMS_ROW = document.getElementById("items_go_here");
-const INPUT_FORM = document.querySelector("#meal-form");
 
 // The Class
 class Meal {
@@ -25,7 +24,8 @@ class Meal {
     }
 }
 
-// This starts filling the page when the page is fully loaded
+// AFTER PAGE IS LOADED, (1) Render Page, (2) Render total calories, (3) Setup Submit/Edit Button
+
 document.addEventListener('DOMContentLoaded', () => { 
     firstRender(); 
     renderTotalCalories();
@@ -44,14 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
        });
 });
 
-// Initial fetch request and render trigger needed to get data for the page
+///////////////////////////////
+// INITIAL RENDERING OF PAGE //
+///////////////////////////////
+
 function firstRender() {
 fetch(MEALS_URL)
 .then(response => response.json())
 .then(meals => renderMealsAndItems(meals));
 }
 
-// This function will perform the initial rendering of Meals and their respective Items
 function renderMealsAndItems(theMeals) {
     for (meal of theMeals) { // Render Meals
         let itemsTable = createMeal(meal); // Creates a meal and returns a table for items to be appended to
@@ -63,14 +65,13 @@ function renderMealsAndItems(theMeals) {
 
 function createMeal(meal) { // this creates the node for a meal and appends it to MEALS_ROW
     let new_meal = new Meal(meal.name, meal.items, meal.id);
-    let meal_TH = document.createElement("th");
-    // meal_TH.setAttribute('id', "meal_"+new_meal.id);
+    let meal_TH = document.createElement("th"); // The header for this meal
     meal_TH.setAttribute('meal-id', new_meal.id);
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
-    MEALS_ROW.appendChild(meal_TH);
+    MEALS_ROW.appendChild(meal_TH); // append this TH to the global meals row
 
     let items_TD = document.createElement("td");
-    ITEMS_ROW.appendChild(items_TD);
+    ITEMS_ROW.appendChild(items_TD); // append this TD to the global items row
     let itemsTable = document.createElement("table");
     itemsTable.setAttribute('id', "table_"+new_meal.name);
     itemsTable.setAttribute('meal-id', new_meal.id);
@@ -78,7 +79,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
     return itemsTable; // The table for all this meal's items
 }
 
-function createItem(item, itemsTable) { // this creates the node for a meal and appends it to MEALS_ROW
+function createItem(item, itemsTable) { // this creates the node for an item and appends it to itemsTable
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
     itemNode.setAttribute("edit-id", "none");
     let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
@@ -91,17 +92,11 @@ function createItem(item, itemsTable) { // this creates the node for a meal and 
     let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
-    itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(ediButton); itemNode.appendChild(delButton);
+    itemNode.appendChild(itemName); itemNode.appendChild(itemKind); itemNode.appendChild(itemCalories); itemNode.appendChild(ediButton); itemNode.appendChild(delButton); // append all the things
     itemsTable.appendChild(itemNode);
 }
 
-function editItem(item, itemsTable) { // this edits an existing node, moving it to a new table if necessary
-    console.log(item);
-    console.log(itemsTable);
-
-}
-
-// Create Item Function (after clicking Submit Button)
+// WHEN SUBMIT BUTTON IS CLICKED
 function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
    let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
    let itemsTable = document.querySelector('#table_'+itemMeal);
@@ -118,7 +113,10 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
     });
 }
 
-// Edit Button function (EDIT)
+////////////////////
+// EDIT FUNCTIONS //
+////////////////////
+
 function editButton(element, item) {
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
@@ -135,14 +133,14 @@ function editButton(element, item) {
         document.querySelector('select').value = item.meal.name;
       // Prevent multiple cancel buttons from being made
         if (!document.getElementById("cancel-button")) {
-        let cancelButton = document.createElement("input"); cancelButton.type="submit"; cancelButton.value="Cancel"; cancelButton.id="cancel-button";
-        INPUT_FORM.appendChild(cancelButton);
-        cancelButton.addEventListener('click', (event) => { event.preventDefault(); resetForm(); cancelButton.remove(); });
+        let cancel = document.createElement("input"); cancel.type="submit"; cancel.value="Cancel"; cancel.id="cancel-button";
+        document.querySelector("#meal-form").appendChild(cancel);
+        cancel.addEventListener('click', (event) => { event.preventDefault(); resetForm(); cancel.remove(); });
         }
     });
 }
 
-// Edit Item Function (after clicking Edit Button)
+// WHEN EDIT BUTTON IS CLICKED
 function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let NEWitemsTable = document.querySelector('#table_'+itemMeal);
@@ -159,13 +157,28 @@ function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) 
     });
 }
 
-// Delete Item function
+function editItem(item, itemsTable) { 
+    let editNode = document.querySelector('[edit-id="edit"]');
+    editNode.childNodes[0].innerText = item.name;
+    editNode.childNodes[1].innerText = item.kind;
+    editNode.childNodes[2].innerText = item.calories+" calories";
+    itemsTable.appendChild(editNode); // this ensures if the meal changed, the item changes columns
+}
+
+//////////////////////
+// DELETE FUNCTIONS //
+//////////////////////
+
 function deleteItem(element, item) {
     element.remove();
     fetch(ITEMS_URL + item.id, {method: 'DELETE'})
     .then( () => refreshCalories() )
     resetForm();
 }
+
+////////////////////////////
+// REFRESH PAGE FUNCTIONS //
+////////////////////////////
 
 function resetForm() {
     submit_type = "create";
@@ -176,7 +189,7 @@ function resetForm() {
     document.querySelector('input[name="calories"]').value = "";
     document.querySelector('select').value = "Breakfast";
     document.querySelector('input[name="item_kind"]').checked = true;
-    document.querySelector('[edit-id="edit"]').setAttribute("edit-id", "none");
+    let ed = document.querySelector('[edit-id="edit"]'); if (ed) {ed.setAttribute("edit-id", "none");}
 }
 
 function refreshCalories() {
@@ -192,7 +205,7 @@ function refreshCalories() {
     renderTotalCalories()
 }
 
-function renderTotalCalories() {
+function renderTotalCalories() { // also used to render total calories on 1st page load
     fetch(CALORIES_URL)
     .then(response => response.json())
     .then(function(calOBJ) { 
