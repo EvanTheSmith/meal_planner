@@ -80,6 +80,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
 function createItem(item, itemsTable) { // this creates the node for a meal and appends it to MEALS_ROW
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
+    itemNode.setAttribute("edit-id", "none");
     let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
@@ -121,6 +122,7 @@ function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
 // Edit Button function (EDIT)
 function editButton(element, item) {
     submit_type = "edit";
+    element.setAttribute("edit-id", "edit");
     document.querySelector("p#form-text").innerText = "Edit your meal item below:";
     let itemID = element.querySelector('td').id;
     document.querySelector('input[name="submit"]').value = "Edit";
@@ -177,6 +179,7 @@ function resetForm() {
     document.querySelector('select').setAttribute("prev-meal", 0);
     document.querySelector('select').value = "Breakfast";
     document.querySelector('input[name="item_kind"]').checked = true;
+    document.querySelector('[edit-id="edit"]').setAttribute("edit-id", "none");
 }
 
 function refreshCalories() {
