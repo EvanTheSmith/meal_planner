@@ -65,6 +65,11 @@ function renderMealsAndItems(theMeals) {
 
 function createMeal(meal) { // this creates the node for a meal and appends it to MEALS_ROW
     let new_meal = new Meal(meal.name, meal.items, meal.id);
+
+    let menu_item = document.createElement("option"); // Populate the drop-down box of the form
+    menu_item.value = menu_item.innerText = new_meal.name;
+    document.querySelector("select").appendChild(menu_item);
+
     let meal_TH = document.createElement("th"); // The header for this meal
     meal_TH.setAttribute('meal-id', new_meal.id);
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
