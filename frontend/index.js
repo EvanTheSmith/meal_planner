@@ -142,6 +142,7 @@ function editButton(element, item) {
 
 // WHEN EDIT BUTTON IS CLICKED
 function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
+    document.getElementById("cancel-button").remove();
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let NEWitemsTable = document.querySelector('#table_'+itemMeal);
     let configuration = { method: "PATCH", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
