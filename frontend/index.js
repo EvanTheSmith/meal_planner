@@ -219,3 +219,13 @@ function renderTotalCalories() { // also used to render total calories on 1st pa
         calBox.innerText = "Total Calories: "+calOBJ.calories;
     });
 }
+
+function deleteAll() {
+    let theNodes = document.querySelectorAll('[edit-id]');
+    for (oneNode of theNodes) {
+        let itemID = parseInt(oneNode.querySelector("td").id);
+        fetch(ITEMS_URL + itemID, {method: 'DELETE'})
+        .then( () => refreshCalories() )
+        oneNode.remove();
+    }
+}
