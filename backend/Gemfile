@@ -8,7 +8,8 @@ ruby '3.1.2'
 # gem 'rails', '~> 6.0.3', '>= 6.0.3.4' # old version of Rails the app was built with
 gem "rails", "~> 7.0.3"
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4' # original database when the app was built
+gem 'pg', '~> 1.3', '>= 1.3.5'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
