@@ -6,8 +6,7 @@ Using this app, a user can track the calories of all meals they consume in one g
 
 Navigate to the "backend" internal directory and enter "rails s" into your terminal to launch the server. Once up and running, open Index.html in the "frontend" directory to use the app.
 
-# Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/EvanTheSmith/meal_planner. This project is intended to be a safe, welcoming space for collaboration.
+> This app requires the free Google font "Lora" to display as intended
 
 # License
 The gem is available as open source under the terms of the MIT License.
