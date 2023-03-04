@@ -4,6 +4,7 @@ body {
 
 #main {
     border: 1px solid black;
+    border-radius: 15px;
     background-color: white;
     width: 1200px;
     margin: auto;
