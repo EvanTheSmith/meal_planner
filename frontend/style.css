@@ -1,5 +1,6 @@
 body {
     background-image: linear-gradient(to right, rgb(32, 23, 69) , rgb(121, 143, 197));
+    padding: 0px;
 }
 
 #main {
@@ -9,6 +10,10 @@ body {
     width: 1200px;
     margin: auto;
     padding: 8px;
+}
+
+#top_text {
+    text-align: auto;
 }
 
 #the_table {
