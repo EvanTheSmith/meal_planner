@@ -1,7 +1,7 @@
 body {
     background-image: linear-gradient(to right, rgb(32, 23, 69) , rgb(121, 143, 197));
     font-family: Lora; 
-    padding: 0px;
+    padding: 0px; margin: 0px;
 }
 
 #main {
@@ -9,7 +9,7 @@ body {
     border-radius: 10px;
     background-color: white;
     width: 1200px;
-    margin: auto;
+    margin: 5px auto;
     padding: 8px;
 }
 
