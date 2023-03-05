@@ -38,3 +38,8 @@ body {
 #edit {
     color:blue;
 }
+
+#delete_button {
+    float: right;
+    margin-top: -22px;
+}
