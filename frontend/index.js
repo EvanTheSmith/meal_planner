@@ -229,11 +229,12 @@ function renderTotalCalories() { // also used to render total calories on 1st pa
 function deleteAll() {
     event.preventDefault();
     let choice = confirm("Are you sure you want to delete all items?");
-    console.log(choice);
-    // let theNodes = document.querySelectorAll('[edit-id]');
-    // for (oneNode of theNodes) {
-    //     let itemID = parseInt(oneNode.querySelector("td").id);
-    //     fetch(ITEMS_URL + itemID, {method: 'DELETE'}).then( () => refreshCalories()) // delete in database
-    //     oneNode.remove(); // delete in DOM
-    // }
+    if (choice == true) {
+        let theNodes = document.querySelectorAll('[edit-id]');
+        for (oneNode of theNodes) {
+            let itemID = parseInt(oneNode.querySelector("td").id);
+            fetch(ITEMS_URL + itemID, {method: 'DELETE'}).then( () => refreshCalories()) // delete in database
+            oneNode.remove(); // delete in DOM
+        }
+    }
 }
