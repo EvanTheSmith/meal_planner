@@ -2,6 +2,7 @@ const HOST_URL = "http://localhost:3000"
 const MEALS_URL = `${HOST_URL}/meals/`
 const ITEMS_URL = `${HOST_URL}/items/`
 const CALORIES_URL = `${HOST_URL}/items/calories`
+const header_object = { "Content-Type": "application/json", "Accept": "application/json" }
 
 let submit_type = "create";
 
@@ -107,7 +108,7 @@ function submitNewItem(name, calories, kind, meal) {
 
    let formData = { name, calories, kind, meal }; // building object using ES6 "name: name === name" convention
    let itemsTable = document.querySelector('#table_'+meal);
-   let configuration = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
+   let configuration = { method: "POST", headers: header_object, body: JSON.stringify(formData) };
 
    fetch(ITEMS_URL, configuration)
    .then(response => response.json())
@@ -152,7 +153,7 @@ function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) 
     document.getElementById("cancel-button").remove();
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let NEWitemsTable = document.querySelector('#table_'+itemMeal);
-    let configuration = { method: "PATCH", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
+    let configuration = { method: "PATCH", headers: header_object, body: JSON.stringify(formData) };
 
     fetch(ITEMS_URL+itemID, configuration)
     .then(response => response.json())
