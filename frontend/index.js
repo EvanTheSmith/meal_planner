@@ -230,8 +230,7 @@ function deleteAll() {
     let theNodes = document.querySelectorAll('[edit-id]');
     for (oneNode of theNodes) {
         let itemID = parseInt(oneNode.querySelector("td").id);
-        fetch(ITEMS_URL + itemID, {method: 'DELETE'})
-        .then( () => refreshCalories() )
-        oneNode.remove();
+        fetch(ITEMS_URL + itemID, {method: 'DELETE'}).then( () => refreshCalories()) // delete in database
+        oneNode.remove(); // delete in DOM
     }
 }
