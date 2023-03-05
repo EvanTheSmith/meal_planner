@@ -102,7 +102,10 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemsTable.appendChild(itemNode);
 }
 
-// WHEN SUBMIT BUTTON IS CLICKED
+///////////////////////////////
+//// CLICKING SUBMIT BUTTON ///
+///////////////////////////////
+
 function submitNewItem(name, calories, kind, meal) {
    Event.preventDefault();
 
