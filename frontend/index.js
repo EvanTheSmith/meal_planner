@@ -102,9 +102,11 @@ function createItem(item, itemsTable) { // this creates the node for an item and
 }
 
 // WHEN SUBMIT BUTTON IS CLICKED
-function submitNewItem(itemName, itemCalories, itemKind, itemMeal) {
-   let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
-   let itemsTable = document.querySelector('#table_'+itemMeal);
+function submitNewItem(name, calories, kind, meal) {
+    event.preventDefault();
+
+   let formData = { name, calories, kind, meal }; // building object using ES6 "name: name === name" convention
+   let itemsTable = document.querySelector('#table_'+meal);
    let configuration = { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(formData) };
 
    fetch(ITEMS_URL, configuration)
