@@ -131,7 +131,7 @@ function submitNewItem(name, calories, kind, meal) {
 function editButton(element, item) {
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
-    document.querySelector("p#form-text").innerText = "Edit your meal item below:";
+    document.querySelector("div#form-text").innerText = "Edit your meal item below:";
     let itemID = element.querySelector('td').id;
     document.querySelector('input[name="submit"]').value = "Edit";
     fetch(ITEMS_URL+itemID).then(response => response.json()).then(function(item) {
