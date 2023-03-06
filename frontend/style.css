@@ -19,7 +19,8 @@ body {
 }
 
 #total-calories {
-    padding-left: 25px
+    padding-left: 25px;
+    margin: 0px 0px 10px 0px;
 }
 
 #the_table {
