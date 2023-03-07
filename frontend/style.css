@@ -45,6 +45,10 @@ body {
     color:blue;
 }
 
+#form-text {
+    margin: 7px 0px 7px 0px;
+}
+
 #meal-form {
     border-left: 15px groove rgb(96, 120, 180);
     border-radius: 10px;
