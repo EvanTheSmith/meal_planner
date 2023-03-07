@@ -4,7 +4,7 @@ body {
     padding: 0px; margin: 0px;
 }
 
-#main {
+#main { /* main DIV wrapper */
     border: 1px solid black;
     border-radius: 10px;
     background-color: white;
@@ -13,7 +13,7 @@ body {
     padding: 8px;
 }
 
-#top_text {
+#top_text { /* Meal Planner App H1 */
     margin: 5px;
     padding-left: 10px;
 }
@@ -37,14 +37,14 @@ body {
     vertical-align: top;
 }
 
-#delete {
+#delete { /* all delete food buttons */
     color:red;
 }
 
-#edit {
+#edit { /* all edit food buttons */
     color:blue;
 }
 
-#delete_button {
+#delete_button { /* the button that deletes everything */
     float: right;
 }
