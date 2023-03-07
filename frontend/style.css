@@ -46,7 +46,8 @@ body {
 }
 
 #meal-form {
-    border-left: 15px solid rgb(96, 120, 180);
+    border-left: 15px groove rgb(96, 120, 180);
+    border-radius: 10px;
     padding-left: 15px;
 }
 
