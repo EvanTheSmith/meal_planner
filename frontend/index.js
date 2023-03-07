@@ -107,7 +107,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
 ///////////////////////////////
 
 function submitNewItem(name, calories, kind, meal) {
-   Event.preventDefault();
+   event.preventDefault();
 
    let formData = { name, calories, kind, meal }; // building object using ES6 "name: name === name" convention
    let itemsTable = document.querySelector('#table_'+meal);
