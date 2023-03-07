@@ -194,13 +194,13 @@ function deleteItem(element, item) {
 
 function resetForm() {
     submit_type = "create";
-    document.querySelector('input[name="submit"]').value = "Submit";
-    document.querySelector("p#form-text").innerText = "Add a new meal item below:";
-    document.querySelector('input[name="name"]').value = "";
-    document.querySelector('input[name="name"]').id = "0";
+    document.querySelector('input#submit-button').value = "Submit";
+    document.querySelector("h2#form-text").innerText = "Add a new meal item below:";
+    document.querySelector('input.text-input').value = "";
+    document.querySelector('input.text-input').id = "0";
     document.querySelector('input[name="calories"]').value = "";
-    document.querySelector('select').value = "Breakfast";
-    document.querySelector('input[name="item_kind"]').checked = true;
+    document.querySelector('select#meal').value = "Breakfast";
+    document.querySelector('input#food').checked = true;
     let ed = document.querySelector('[edit-id="edit"]'); if (ed) {ed.setAttribute("edit-id", "none");}
 }
 
