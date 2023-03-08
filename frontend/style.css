@@ -41,8 +41,16 @@ body {
     color:red;
 }
 
+#delete:hover {
+    cursor: pointer;
+}
+
 #edit { /* all edit food buttons */
     color:blue;
+}
+
+#edit:hover {
+    cursor: pointer;
 }
 
 #form-text {
