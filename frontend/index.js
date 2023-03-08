@@ -88,6 +88,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 function createItem(item, itemsTable) { // this creates the node for an item and appends it to itemsTable
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
+    
     let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
     let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
