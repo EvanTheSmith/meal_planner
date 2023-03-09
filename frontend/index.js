@@ -9,6 +9,12 @@ let submit_type = "create";
 const MEALS_ROW = document.getElementById("meals_go_here");
 const ITEMS_ROW = document.getElementById("items_go_here");
 
+// Form Values
+const FORM_NAME = document.querySelector('input[name="name"]'); // name of food/drink input
+const FORM_RADIO = document.querySelectorAll('input[name="item_kind"]'); // radio buttons
+const FORM_CALORIES = document.querySelector('input[name="calories"]'); // how many calories input
+const FORM_MEAL = document.querySelector('select') // select a meal 
+
 // The Class
 class Meal {
     constructor(name, items, id) {
@@ -155,12 +161,11 @@ function editButton(element, item) {
     document.querySelector('input[name="submit"]').value = "Edit";
     fetch(ITEMS_URL+element.id).then(response => response.json()).then(function(item) {
         // Update Form Values from Database Object
-        document.querySelector('input[name="name"]').value = item.name;
-        document.querySelector('input[name="name"]').id = element.id;
-        document.querySelector('input[name="calories"]').value = item.calories;
-        let radioBtn = document.querySelectorAll('input[name="item_kind"]');
-        if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
-        document.querySelector('select').value = item.meal.name;
+        FORM_NAME.value = item.name;
+        FORM_NAME.id = element.id;
+        if(item.kind=="food") {FORM_RADIO[0].checked = true;} else {FORM_RADIO[1].checked = true;}
+        FORM_CALORIES.value = item.calories;
+        FORM_MEAL.value = item.meal.name;
       // Prevent multiple cancel buttons from being made
         if (!document.getElementById("cancel-button")) {
         let cancel = document.createElement("input"); cancel.type="submit"; cancel.value="Cancel"; cancel.id="cancel-button";
