@@ -97,7 +97,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     img.src = burger_path.default;
 
     let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
-    let itemKind = document.createElement("td"); itemKind.innerText = item.kind;
+    let itemKind = document.createElement("td");
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
 
     let ediButton = document.createElement("td"); ediButton.id = "edit"; ediButton.innerText = "EDIT";
@@ -106,7 +106,8 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
-    itemNode.appendChild(itemKind); // append all the things
+    itemKind.appendChild(img); // append food/drink icon to itemKind TD
+    itemNode.appendChild(itemKind); // append all the other things
     itemNode.appendChild(itemName); 
     itemNode.appendChild(itemCalories); 
     itemNode.appendChild(ediButton); 
