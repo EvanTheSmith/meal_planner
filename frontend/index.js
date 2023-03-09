@@ -10,10 +10,10 @@ const MEALS_ROW = document.getElementById("meals_go_here");
 const ITEMS_ROW = document.getElementById("items_go_here");
 
 // Form Values
-const FORM_NAME = document.querySelector('input[name="name"]'); // name of food/drink input
-const FORM_RADIO = document.querySelectorAll('input[name="item_kind"]'); // radio buttons
-const FORM_CALORIES = document.querySelector('input[name="calories"]'); // how many calories input
-const FORM_MEAL = document.querySelector('select') // select a meal 
+const FORM_NAME = document.querySelector('input[name="name"]');
+const FORM_RADIO = document.querySelectorAll('input[name="item_kind"]');
+const FORM_CALORIES = document.querySelector('input[name="calories"]');
+const FORM_MEAL = document.querySelector('select');
 
 // The Class
 class Meal {
