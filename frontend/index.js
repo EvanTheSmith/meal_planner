@@ -152,12 +152,11 @@ function editButton(element, item) {
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
     document.querySelector("h2#form-text").innerText = "Edit your meal item below:";
-    let itemID = element.id;
     document.querySelector('input[name="submit"]').value = "Edit";
-    fetch(ITEMS_URL+itemID).then(response => response.json()).then(function(item) {
+    fetch(ITEMS_URL+element.id).then(response => response.json()).then(function(item) {
         // Update Form Values from Database Object
         document.querySelector('input[name="name"]').value = item.name;
-        document.querySelector('input[name="name"]').id = itemID;
+        document.querySelector('input[name="name"]').id = element.id;
         document.querySelector('input[name="calories"]').value = item.calories;
         let radioBtn = document.querySelectorAll('input[name="item_kind"]');
         if(item.kind=="food") {radioBtn[0].checked = true;} else {radioBtn[1].checked = true;}
