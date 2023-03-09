@@ -94,8 +94,9 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     img.src = `./res/${item.kind}.png`;
     img.className = 'food-icon';
 
-    let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
-    let itemKind = document.createElement("td"); itemKind.appendChild(img); // append food/drink icon
+    let itemName = document.createElement("td"); itemName.innerText = item.name;
+    let itemKind = document.createElement("td"); itemKind.setAttribute('id', item.id);
+    itemKind.appendChild(img); // append food/drink icon
     let itemCalories = document.createElement("td"); itemCalories.innerText = item.calories+" calories";
 
     let ediButton = document.createElement("td"); ediButton.id = "edit"; ediButton.innerText = "EDIT";
