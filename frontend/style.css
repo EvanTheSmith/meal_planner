@@ -37,6 +37,10 @@ body {
     vertical-align: top;
 }
 
+.food-icon {
+    height: 25px;
+}
+
 #delete { /* all delete food buttons */
     color:red;
 }

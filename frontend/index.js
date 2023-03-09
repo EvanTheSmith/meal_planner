@@ -5,7 +5,8 @@ const CALORIES_URL = `${HOST_URL}/items/calories`
 const header_object = { "Content-Type": "application/json", "Accept": "application/json" }
 
 // images
-const burger_path = './res/borger.png';
+const food_path = './res/borger.png';
+const drink_path = './res/beverage.png';
 
 let submit_type = "create";
 
@@ -94,7 +95,8 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
 
     let img = document.createElement('img');
-    img.src = burger_path.default;
+    img.src = food_path;
+    img.className = 'food-icon';
 
     let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
     let itemKind = document.createElement("td");
