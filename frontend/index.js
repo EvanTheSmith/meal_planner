@@ -100,7 +100,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     let itemCalories = document.createElement("td"); 
 
     // set important values
-    itemKind.setAttribute('id', item.id);
+    itemNode.setAttribute('id', item.id);
     itemName.innerText = item.name;
     itemCalories.innerText = item.calories+" calories";
     
@@ -118,7 +118,6 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemNode.appendChild(itemCalories); 
     itemNode.appendChild(ediButton); 
     itemNode.appendChild(delButton); 
-
     itemsTable.appendChild(itemNode);
 }
 
@@ -149,10 +148,11 @@ function submitNewItem(name, calories, kind, meal) {
 ////////////////////
 
 function editButton(element, item) {
+    console.log(element);
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
     document.querySelector("h2#form-text").innerText = "Edit your meal item below:";
-    let itemID = element.querySelector('td').id;
+    let itemID = element.id;
     document.querySelector('input[name="submit"]').value = "Edit";
     fetch(ITEMS_URL+itemID).then(response => response.json()).then(function(item) {
         // Update Form Values from Database Object
