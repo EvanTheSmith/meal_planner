@@ -4,10 +4,6 @@ const ITEMS_URL = `${HOST_URL}/items/`
 const CALORIES_URL = `${HOST_URL}/items/calories`
 const header_object = { "Content-Type": "application/json", "Accept": "application/json" }
 
-// images
-const food_path = './res/borger.png';
-const drink_path = './res/bev.png';
-
 let submit_type = "create";
 
 const MEALS_ROW = document.getElementById("meals_go_here");
@@ -95,8 +91,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
 
     let img = document.createElement('img'); // creates element for image, determines its icon, and gives it a class
-    if (item.kind == 'food') img.src = food_path;
-    if (item.kind == 'drink') img.src = drink_path;
+    img.src = `./res/${item.kind}.png`;
     img.className = 'food-icon';
 
     let itemName = document.createElement("td"); itemName.innerText = item.name; itemName.setAttribute('id', item.id)
