@@ -96,10 +96,6 @@ function createItem(item, itemsTable) { // this creates the node for an item and
 
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
 
-    let img = document.createElement('img'); // creates element for image, determines its icon, and gives it a class
-    img.src = `./res/${item.kind}.png`;
-    img.className = 'food-icon';
-
     // create core elements
     let itemKind = document.createElement("td");
     let itemName = document.createElement("td");
@@ -107,6 +103,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
 
     // set important values
     itemNode.setAttribute('id', item.id);
+    itemKind.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img>`;
     itemName.innerText = item.name;
     itemCalories.innerText = item.calories+" calories";
     
@@ -118,7 +115,6 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
     // append everything
-    itemKind.appendChild(img); // append food/drink icon
     itemNode.appendChild(itemKind); // append all the other things
     itemNode.appendChild(itemName); 
     itemNode.appendChild(itemCalories); 
