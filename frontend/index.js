@@ -153,6 +153,7 @@ function submitNewItem(name, calories, kind, meal) {
 // EDIT FUNCTIONS //
 ////////////////////
 
+// WHEN AN ITEM IS CUED UP TO BEGIN EDITING
 function editButton(element, item) {
     console.log(element);
     submit_type = "edit";
@@ -175,7 +176,7 @@ function editButton(element, item) {
     });
 }
 
-// WHEN EDIT BUTTON IS CLICKED
+// WHEN EDIT IS COMPLETE
 function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
     document.getElementById("cancel-button").remove();
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
