@@ -155,7 +155,6 @@ function submitNewItem(name, calories, kind, meal) {
 
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
 function editButton(element, item) {
-    console.log(element);
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
     document.querySelector("h2#form-text").innerText = "Edit your meal item below:";
@@ -196,9 +195,10 @@ function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) 
 
 function editItem(item, itemsTable) { 
     let editNode = document.querySelector('[edit-id="edit"]');
-    editNode.childNodes[0].innerText = item.name;
-    editNode.childNodes[1].innerText = item.kind;
+    editNode.childNodes[0].innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img>`;
+    editNode.childNodes[1].innerText = item.name;
     editNode.childNodes[2].innerText = item.calories+" calories";
+
     itemsTable.appendChild(editNode); // this ensures if the meal changed, the item changes columns
 }
 
