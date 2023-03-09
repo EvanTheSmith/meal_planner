@@ -100,8 +100,8 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
-    itemNode.appendChild(itemKind); 
-    itemNode.appendChild(itemName); // append all the things
+    itemNode.appendChild(itemKind); // append all the things
+    itemNode.appendChild(itemName); 
     itemNode.appendChild(itemCalories); 
     itemNode.appendChild(ediButton); 
     itemNode.appendChild(delButton); 
