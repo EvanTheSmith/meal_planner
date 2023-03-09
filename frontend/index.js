@@ -93,15 +93,14 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
 function createItem(item, itemsTable) { // this creates the node for an item and appends it to itemsTable
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
-
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
 
-    // create core elements
+    // create node children
     let itemKind = document.createElement("td");
     let itemName = document.createElement("td");
     let itemCalories = document.createElement("td"); 
 
-    // set important values
+    // set important values for node children
     itemNode.setAttribute('id', item.id);
     itemKind.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img>`;
     itemName.innerText = item.name;
@@ -110,12 +109,11 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     // edit/delete buttons
     let ediButton = document.createElement("td"); ediButton.id = "edit"; ediButton.innerText = "EDIT";
     ediButton.addEventListener("click", function() {editButton(itemNode, item)});
-
     let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
     // append everything
-    itemNode.appendChild(itemKind); // append all the other things
+    itemNode.appendChild(itemKind);
     itemNode.appendChild(itemName); 
     itemNode.appendChild(itemCalories); 
     itemNode.appendChild(ediButton); 
