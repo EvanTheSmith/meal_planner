@@ -69,7 +69,7 @@ body {
 
 #delete_button { /* the button that deletes everything */
     float: right;
-    margin-top: -37px;
+    margin-top: -36px;
     padding: 20px;
     background-color: red;
     color: white;
