@@ -58,7 +58,7 @@ body {
 }
 
 #form-text {
-    margin: 7px 0px 7px 0px;
+    margin: 15px 0px 7px 0px;
 }
 
 #meal-form {
@@ -71,4 +71,14 @@ body {
     float: right;
     margin-top: -37px;
     padding: 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+#delete_button:hover {
+    background-color: rgb(208, 0, 0);
+    text-decoration: underline;
+    cursor: pointer;
 }
