@@ -149,7 +149,8 @@ function submitNewItem(name, calories, kind, meal) {
 
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
 function editButton(element, item) {
-    let ed = document.querySelector('[edit-id="edit"]'); if (ed) {ed.setAttribute("edit-id", "none");} // clear previous edits if any
+    let ed = document.querySelector('[edit-id="edit"]'); if (ed) ed.setAttribute("edit-id", "none"); // clear previous edits (if any)
+    
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
     document.querySelector("h2#form-text").innerText = "Edit your meal item below:";
