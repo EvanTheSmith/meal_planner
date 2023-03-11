@@ -91,38 +91,28 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
     return itemsTable; // The table for all this meal's items
 }
 
+
 function createItem(item, itemsTable) { // this creates the node for an item and appends it to itemsTable
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
+    itemNode.setAttribute('id', item.id); // ensure each item has a unique ID
 
-    // create node children
-    // let itemKind = document.createElement("td");
-    // let itemName = document.createElement("td");
-    // let itemCalories = document.createElement("td"); 
+    // create node children 
     let itemDIV = document.createElement("td");
-    itemDIV.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> ${item.name} <br /> ${item.calories} calories edit delete`;
-
-    // set important values for node children
-    itemNode.setAttribute('id', item.id);
-    // itemKind.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img>`;
-    // itemName.innerText = item.name;
-    // itemCalories.innerText = `${item.calories} calories`;
-    
-
+    itemDIV.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
+        ${item.name} <br /> 
+        ${item.calories} calories `;
     
     // edit/delete buttons
-    let ediButton = document.createElement("td"); ediButton.id = "edit"; ediButton.innerText = "EDIT";
+    let ediButton = document.createElement("div"); ediButton.id = "edit"; ediButton.innerText = "edit ";
     ediButton.addEventListener("click", function() {editButton(itemNode, item)});
-    let delButton = document.createElement("td"); delButton.id = "delete"; delButton.innerText = "DELETE";
+    let delButton = document.createElement("div"); delButton.id = "delete"; delButton.innerText = "delete";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
     // append everything
-    // itemNode.appendChild(itemKind);
-    // itemNode.appendChild(itemName); 
-    // itemNode.appendChild(itemCalories); 
     itemNode.appendChild(itemDIV);
-    itemNode.appendChild(ediButton); 
-    itemNode.appendChild(delButton); 
+    itemDIV.appendChild(ediButton); 
+    itemDIV.appendChild(delButton); 
     itemsTable.appendChild(itemNode);
 }
 

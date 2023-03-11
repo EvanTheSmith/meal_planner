@@ -43,6 +43,7 @@ body {
 
 #delete { /* all delete food buttons */
     color:red;
+    display: inline;
 }
 
 #delete:hover {
@@ -51,6 +52,7 @@ body {
 
 #edit { /* all edit food buttons */
     color:blue;
+    display: inline;
 }
 
 #edit:hover {
