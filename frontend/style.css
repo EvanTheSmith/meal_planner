@@ -28,6 +28,11 @@ body {
     width: 1200px;
 }
 
+#the_table { /* main table .. need to figure out how to style children */
+    border: 1px solid black;
+    width: 1200px;
+}
+
 #meals_go_here {
     background-color: rgb(96, 120, 180);
     color: white;
