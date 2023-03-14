@@ -39,8 +39,7 @@ body {
 }
 
 .meal_row {
-    background-color: blue;
-    margin: 10px;
+    padding: 5px;
 }
 
 #items_go_here {
