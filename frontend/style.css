@@ -38,6 +38,11 @@ body {
     color: white;
 }
 
+.meal_row {
+    background-color: blue;
+    margin: 10px;
+}
+
 #items_go_here {
     vertical-align: top;
 }

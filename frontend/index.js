@@ -96,6 +96,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
     itemNode.setAttribute('id', item.id); // ensure each item has a unique ID
+    itemNode.className = "meal_row";
 
     // create node children 
     let itemDIV = document.createElement("td");
