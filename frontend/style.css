@@ -57,6 +57,7 @@ body {
 
 #delete:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 #edit { /* all edit food buttons */
@@ -66,6 +67,7 @@ body {
 
 #edit:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 #form-text {
