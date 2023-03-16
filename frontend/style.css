@@ -70,9 +70,8 @@ body {
     text-decoration: underline;
 }
 
-#edit_selected {
-    color: black;
-    text-decoration: none;
+#edit_selected { /* disable colors when editing */
+    display: inline;
 }
 
 #form-text {
