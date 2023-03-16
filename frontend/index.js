@@ -106,7 +106,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     
     // edit/delete buttons
     let ediButton = document.createElement("div"); ediButton.id = "edit"; ediButton.innerText = "edit ";
-    ediButton.addEventListener("click", function() {editButton(itemNode, item, edibutton);});
+    ediButton.addEventListener("click", function() {editButton(itemNode, item); ediButton.classList.add("no_style");});
     let delButton = document.createElement("div"); delButton.id = "delete"; delButton.innerText = "delete";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
