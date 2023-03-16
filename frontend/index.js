@@ -106,7 +106,7 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     
     // edit/delete buttons
     let ediButton = document.createElement("div"); ediButton.id = "edit"; ediButton.innerText = "edit ";
-    ediButton.addEventListener("click", function() {editButton(itemNode, ediButton); ediButton.id = "edit_selected";});
+    ediButton.addEventListener("click", function() {editButton(itemNode, ediButton);});
     let delButton = document.createElement("div"); delButton.id = "delete"; delButton.innerText = "delete";
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
@@ -146,6 +146,8 @@ function submitNewItem(name, calories, kind, meal) {
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
 function editButton(element, button) {
     let ed = document.querySelector('[edit-id="edit"]'); if (ed) ed.setAttribute("edit-id", "none"); // clear previous edits (if any)
+
+    button.id = "edit_selected";
 
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
