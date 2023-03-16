@@ -143,12 +143,16 @@ function submitNewItem(name, calories, kind, meal) {
 // EDIT FUNCTIONS //
 ////////////////////
 
+function clearEdits() { // reverts any selected edit buttons
+    let all_the_buttons = document.querySelectorAll('#edit_selected');
+    for (const one of all_the_buttons) { one.id = "edit"; } 
+}
+
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
 function editButton(element, button) {
     let ed = document.querySelector('[edit-id="edit"]'); if (ed) ed.setAttribute("edit-id", "none"); // clear previous edits (if any)
 
-    let all_the_buttons = document.querySelectorAll('#edit_selected');
-    for (const one of all_the_buttons) { one.id = "edit"; } // revert any other selected edit buttons
+    clearEdits();
     button.id = "edit_selected"; // select THIS edit button
 
     submit_type = "edit";
@@ -162,11 +166,10 @@ function editButton(element, button) {
         if(item.kind=="food") {FORM_RADIO[0].checked = true;} else {FORM_RADIO[1].checked = true;}
         FORM_CALORIES.value = item.calories;
         FORM_MEAL.value = item.meal.name;
-      // Prevent multiple cancel buttons from being made
-        if (!document.getElementById("cancel-button")) {
+        if (!document.getElementById("cancel-button")) { // Prevent multiple cancel buttons from being made
         let cancel = document.createElement("input"); cancel.type="submit"; cancel.value="Cancel"; cancel.id="cancel-button";
         document.querySelector("#meal-form").appendChild(cancel);
-        cancel.addEventListener('click', (event) => { event.preventDefault(); resetForm(); cancel.remove(); });
+        cancel.addEventListener('click', (event) => { event.preventDefault(); clearEdits(); resetForm(); cancel.remove(); });
         }
     });
 }
