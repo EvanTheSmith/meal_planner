@@ -147,7 +147,9 @@ function submitNewItem(name, calories, kind, meal) {
 function editButton(element, button) {
     let ed = document.querySelector('[edit-id="edit"]'); if (ed) ed.setAttribute("edit-id", "none"); // clear previous edits (if any)
 
-    button.id = "edit_selected";
+    let all_the_buttons = document.querySelectorAll('#edit_selected');
+    for (const one of all_the_buttons) { one.id = "edit"; } // revert any other selected edit buttons
+    button.id = "edit_selected"; // select THIS edit button
 
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
