@@ -98,9 +98,9 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemNode.setAttribute('id', item.id); // ensure each item has a unique ID
 
     // create node children 
-    let itemDIV = document.createElement("td");
-    itemDIV.className = "meal_row";
-    itemDIV.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
+    // let itemDIV = document.createElement("td");
+    itemNode.className = "meal_row";
+    itemNode.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
         ${item.name} <br /> 
         ${item.calories} calories `;
     
@@ -111,9 +111,9 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
     // append everything
-    itemNode.appendChild(itemDIV);
-    itemDIV.appendChild(ediButton); 
-    itemDIV.appendChild(delButton); 
+    // itemNode.appendChild(itemDIV);
+    itemNode.appendChild(ediButton); 
+    itemNode.appendChild(delButton); 
     itemsTable.appendChild(itemNode);
 }
 
