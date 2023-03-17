@@ -144,6 +144,9 @@ function submitNewItem(name, calories, kind, meal) {
 function clearEdits() { // reverts any selected edit buttons
     let all_the_buttons = document.querySelectorAll('#edit_selected');
     for (const one of all_the_buttons) { one.id = "edit"; }
+
+    let selected_node = document.querySelector('.selected_item');
+    if (selected_node) selected_node.classList.remove("selected_item");
 }
 
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
