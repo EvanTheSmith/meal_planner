@@ -143,7 +143,7 @@ function submitNewItem(name, calories, kind, meal) {
 
 function clearEdits() { // reverts any selected edit buttons
     let all_the_buttons = document.querySelectorAll('#edit_selected');
-    for (const one of all_the_buttons) { one.id = "edit"; } 
+    for (const one of all_the_buttons) { one.id = "edit"; }
 }
 
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
@@ -166,6 +166,7 @@ function editButton(element, button) {
         if(item.kind=="food") {FORM_RADIO[0].checked = true;} else {FORM_RADIO[1].checked = true;}
         FORM_CALORIES.value = item.calories;
         FORM_MEAL.value = item.meal.name;
+
         if (!document.getElementById("cancel-button")) { // Prevent multiple cancel buttons from being made
         let cancel = document.createElement("input"); cancel.type="submit"; cancel.value="Cancel"; cancel.id="cancel-button";
         document.querySelector("#meal-form").appendChild(cancel);
@@ -176,8 +177,9 @@ function editButton(element, button) {
 
 // WHEN EDIT IS COMPLETE
 function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
-    let selected_noode = document.querySelector('div.selected_item');
+    let selected_node = document.querySelector('div.selected_item');
     selected_node.classList.remove("selected_item");
+
     document.getElementById("cancel-button").remove();
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let NEWitemsTable = document.querySelector('#table_'+itemMeal);
