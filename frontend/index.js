@@ -96,10 +96,9 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     let itemNode = document.createElement("tr"); // a row for all this item's attributes
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
     itemNode.setAttribute('id', item.id); // ensure each item has a unique ID
+    itemNode.className = "meal_row"; // for styling
 
-    // create node children 
-    // let itemDIV = document.createElement("td");
-    itemNode.className = "meal_row";
+    // setup the HTML using a template literal
     itemNode.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
         ${item.name} <br /> 
         ${item.calories} calories `;
@@ -111,10 +110,9 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
     // append everything
-    // itemNode.appendChild(itemDIV);
-    itemNode.appendChild(ediButton); 
-    itemNode.appendChild(delButton); 
-    itemsTable.appendChild(itemNode);
+    itemNode.appendChild(ediButton); // add the edit button
+    itemNode.appendChild(delButton); // add the delete button
+    itemsTable.appendChild(itemNode); // put it on the table
 }
 
 ///////////////////////////////
