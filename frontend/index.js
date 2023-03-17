@@ -153,6 +153,8 @@ function editButton(element, button) {
     clearEdits();
     button.id = "edit_selected"; // select THIS edit button
 
+    element.classList.add("selected_item");
+
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
     document.querySelector("h2#form-text").innerText = "Edit your meal item below:";
@@ -174,6 +176,8 @@ function editButton(element, button) {
 
 // WHEN EDIT IS COMPLETE
 function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) {
+    let selected_noode = document.querySelector('div.selected_item');
+    selected_node.classList.remove("selected_item");
     document.getElementById("cancel-button").remove();
     let formData = { name: itemName, calories: itemCalories, kind: itemKind, meal: itemMeal };
     let NEWitemsTable = document.querySelector('#table_'+itemMeal);

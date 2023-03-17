@@ -39,11 +39,12 @@ body {
 }
 
 .meal_row {
-    border: 1px solid red;
+    padding: 5px;
+    border: 3px solid white;
 }
 
 .selected_item {
-    border: 1px solid black;
+    border: 3px dotted red;
 }
 
 #items_go_here {
