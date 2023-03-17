@@ -154,7 +154,6 @@ function editButton(element, button) {
 
     clearEdits();
     button.id = "edit_selected"; // select THIS edit button
-    element.classList.add("selected_item");
 
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
@@ -195,9 +194,17 @@ function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) 
 
 function editItem(item, itemsTable) { 
     let editNode = document.querySelector('[edit-id="edit"]');
-    editNode.childNodes[0].innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img>`;
-    editNode.childNodes[1].innerText = item.name;
-    editNode.childNodes[2].innerText = item.calories+" calories";
+    editNode.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
+    ${item.name} <br /> 
+    ${item.calories} calories `;
+
+    // remake edit/delete buttons
+    let ediButton = document.createElement("div"); ediButton.id = "edit"; ediButton.innerText = "edit ";
+    ediButton.addEventListener("click", function() {editButton(editNode, ediButton);});
+    let delButton = document.createElement("div"); delButton.id = "delete"; delButton.innerText = "delete";
+    delButton.addEventListener("click", function() {deleteItem(editNode, item)});
+    editNode.appendChild(ediButton); 
+    editNode.appendChild(delButton); 
 
     itemsTable.appendChild(editNode); // this ensures if the meal changed, the item changes columns
 }
