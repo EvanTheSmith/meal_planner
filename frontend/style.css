@@ -39,7 +39,7 @@ body {
 }
 
 .meal_row {
-    padding: 5px;
+    border: 1px solid red;
 }
 
 .selected_item {

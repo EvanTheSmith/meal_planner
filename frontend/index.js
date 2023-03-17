@@ -93,7 +93,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
 
 function createItem(item, itemsTable) { // this creates the node for an item and appends it to itemsTable
-    let itemNode = document.createElement("tr"); // a row for all this item's attributes
+    let itemNode = document.createElement("div"); // a box for all this item's attributes
     itemNode.setAttribute("edit-id", "none"); // sets up an edit attribute which will be used if the item is ever edited
     itemNode.setAttribute('id', item.id); // ensure each item has a unique ID
     itemNode.className = "meal_row"; // for styling
