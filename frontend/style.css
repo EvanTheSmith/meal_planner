@@ -42,6 +42,11 @@ body {
     padding: 5px;
 }
 
+.meal_row_selected {
+    padding: 5px;
+    border: 1px solid black;
+}
+
 #items_go_here {
     vertical-align: top;
 }
