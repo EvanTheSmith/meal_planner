@@ -206,10 +206,13 @@ function editItem(item, itemsTable) {
 //////////////////////
 
 function deleteItem(element, item) {
-    element.remove();
-    fetch(ITEMS_URL + item.id, {method: 'DELETE'})
-    .then( () => refreshCalories() )
-    resetForm();
+    let choice = confirm("Are you sure you want to delete this item?");
+    if (choice == true) {
+        element.remove();
+        fetch(ITEMS_URL + item.id, {method: 'DELETE'})
+        .then( () => refreshCalories() )
+        resetForm();
+    }
 }
 
 ////////////////////////////
