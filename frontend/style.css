@@ -43,7 +43,6 @@ body {
 }
 
 .selected_item {
-    padding: 5px;
     border: 1px solid black;
 }
 

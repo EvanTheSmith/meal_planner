@@ -154,6 +154,7 @@ function editButton(element, button) {
 
     clearEdits();
     button.id = "edit_selected"; // select THIS edit button
+    element.classList.add("selected_item");
 
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
