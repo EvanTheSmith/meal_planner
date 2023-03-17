@@ -42,7 +42,7 @@ body {
     padding: 5px;
 }
 
-.meal_row_selected {
+.selected_item {
     padding: 5px;
     border: 1px solid black;
 }
