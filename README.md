@@ -4,7 +4,7 @@ Using this app, a user can track the calories of all meals they consume in one g
 
 # Usage
 
-Navigate to the "backend" internal directory and enter "rails s" into your terminal to launch the server. Once up and running, open Index.html in the "frontend" directory to use the app.
+Navigate to the "backend" internal directory and enter "rails s" into your terminal to launch the server. Once up and running, open Index.html in the "frontend" directory using a Web browser. Google Chrome is recommended.
 
 > This app requires the free Google font "Lora" to display as intended
 
