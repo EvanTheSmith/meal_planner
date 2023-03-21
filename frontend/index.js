@@ -160,7 +160,7 @@ function editButton(element, button) {
 
     submit_type = "edit";
     element.setAttribute("edit-id", "edit");
-    document.querySelector("h2#form-text").innerText = "Edit your meal item below:";
+    document.querySelector("h3#form-text").innerText = "Edit your meal item below:";
     document.querySelector('input[name="submit"]').value = "Edit";
     fetch(ITEMS_URL+element.id).then(response => response.json()).then(function(item) {
         // Update Form Values from Database Object
@@ -237,7 +237,7 @@ function deleteItem(element, item) {
 function resetForm() {
     submit_type = "create";
     document.querySelector('input#submit-button').value = "Submit";
-    document.querySelector("h2#form-text").innerText = "Add a new meal item below:";
+    document.querySelector("h3#form-text").innerText = "Add a new meal item below:";
     document.querySelector('input.text-input').value = "";
     document.querySelector('input.text-input').id = "0";
     document.querySelector('input[name="calories"]').value = "";
