@@ -86,7 +86,11 @@ body {
 #meal-form {
     border-left: 15px solid rgb(161, 175, 210);
     border-bottom-left-radius: 8px;
-    padding-left: 15px;
+    padding-left: 12px;
+}
+
+#meal-form > input, select {
+    margin: 5px;   
 }
 
 #delete_button { /* the button that deletes everything */
