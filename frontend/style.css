@@ -95,7 +95,7 @@ body {
 
 #delete_button { /* the button that deletes everything */
     float: right;
-    margin-top: -36px;
+    margin-top: -25px;
     padding: 20px;
     background-color: red;
     color: white;
