@@ -102,7 +102,8 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemNode.innerHTML = `<table>
                             <tr>
                                 <td> <img src="./res/${item.kind}.png" class="food-icon"></img> </td>
-                                <td> ${item.name} <br /> ${item.calories} calories </td>
+                                <td> ${item.name} <br /> ${item.calories} calories 
+                                <div id="edit">edit</div> <div id="delete">delete</div> </td>
                             </tr>
                         </table>`;
     
