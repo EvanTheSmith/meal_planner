@@ -110,12 +110,10 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     // edit/delete buttons
     let ediButton = itemNode.querySelector("#edit");
     ediButton.addEventListener("click", function() {editButton(itemNode, ediButton);});
-    let delButton = document.createElement("delete");
+    let delButton = itemNode.querySelector("#delete");
     delButton.addEventListener("click", function() {deleteItem(itemNode, item)});
 
     // append everything
-    itemNode.appendChild(ediButton); // add the edit button
-    itemNode.appendChild(delButton); // add the delete button
     itemsTable.appendChild(itemNode); // put it on the table
 }
 
