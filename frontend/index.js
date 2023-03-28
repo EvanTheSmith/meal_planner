@@ -99,9 +99,12 @@ function createItem(item, itemsTable) { // this creates the node for an item and
     itemNode.className = "meal_row"; // for styling
 
     // setup the HTML using a template literal
-    itemNode.innerHTML = `<table><tr><td> <img src="./res/${item.kind}.png" class="food-icon"></img> </td>
-        <td> ${item.name} <br />
-        ${item.calories} calories </td></tr></table>`;
+    itemNode.innerHTML = `<table>
+                            <tr>
+                                <td> <img src="./res/${item.kind}.png" class="food-icon"></img> </td>
+                                <td> ${item.name} <br /> ${item.calories} calories </td>
+                            </tr>
+                        </table>`;
     
     // edit/delete buttons
     let ediButton = document.createElement("div"); ediButton.id = "edit"; ediButton.innerText = "edit ";
