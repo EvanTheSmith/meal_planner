@@ -239,7 +239,7 @@ function deleteItem(element, item) {
 function resetForm() {
     submit_type = "create";
     document.querySelector('input#submit-button').value = "Submit";
-    document.querySelector("h3#form-text").innerText = "Add a new meal item below:";
+    document.querySelector("h3#form-text").innerText = "Add a new meal item:";
     document.querySelector('input.text-input').value = "";
     document.querySelector('input.text-input').id = "0";
     document.querySelector('input[name="calories"]').value = "";
