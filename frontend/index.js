@@ -255,7 +255,7 @@ function refreshCalories() {
     .then(function(meals) {
         for (let meal of meals) {
             let new_meal = new Meal(meal.name, meal.items, meal.id);
-            let theNode = document.querySelector('[meal-id'+'="'+new_meal.id+'"]');
+            let theNode = document.querySelector(`[meal-id="${new_meal.id}"]`);
             theNode.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
         }
     } );
