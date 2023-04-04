@@ -245,7 +245,8 @@ function resetForm() {
     document.querySelector('input[name="calories"]').value = "";
     document.querySelector('select#meal').value = "Breakfast";
     document.querySelector('input#food').checked = true;
-    let ed = document.querySelector('[edit-id="edit"]'); if (ed) {ed.setAttribute("edit-id", "none");}
+    let ed = document.querySelector('[edit-id="edit"]'); 
+    if (ed) {ed.setAttribute("edit-id", "none");}
 }
 
 function refreshCalories() {
