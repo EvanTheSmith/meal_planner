@@ -265,9 +265,9 @@ function refreshCalories() {
 function renderTotalCalories() { // also used to render total calories on 1st page load
     fetch(CALORIES_URL)
     .then(response => response.json())
-    .then(function(calOBJ) { 
+    .then(function({calories}) { 
         let calBox = document.getElementById("total-calories");
-        calBox.innerText = "Total Calories: "+calOBJ.calories;
+        calBox.innerText = "Total Calories: "+calories;
     });
 }
 
