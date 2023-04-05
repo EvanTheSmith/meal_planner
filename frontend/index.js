@@ -223,7 +223,7 @@ function editItem(item, itemsTable) {
 //////////////////////
 
 function deleteItem(element, item) {
-    let choice = confirm("Are you sure you want to delete this item?");
+    let choice = confirm(`Are you sure you want to delete ${item.name}?`);
     if (choice == true) {
         element.remove();
         fetch(ITEMS_URL + item.id, {method: 'DELETE'})
