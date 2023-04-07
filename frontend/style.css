@@ -28,7 +28,8 @@ body {
 } */
 
 #the_table { /* main table .. need to figure out how to style children */
-    border: 1px solid black;
+    border-left: 3px solid rgb(161, 175, 210);
+    border-right: 3px solid rgb(161, 175, 210);
     width: 1200px;
 }
 
