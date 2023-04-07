@@ -29,7 +29,6 @@ body {
 
 #the_table { /* main table .. need to figure out how to style children */
     width: 1200px;
-    border-right: 2px solid rgb(161, 175, 210);
 }
 
 #meals_go_here {
@@ -38,7 +37,7 @@ body {
 }
 
 .items_table {
-    border-left: 2px solid rgb(161, 175, 210);
+    background-color: rgb(233, 234, 240);
 }
 
 .meal_row {
