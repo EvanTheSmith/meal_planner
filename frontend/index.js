@@ -82,12 +82,10 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
     meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
     MEALS_ROW.appendChild(meal_TH); // append this TH to the global meals row
 
-    let items_TD = document.createElement("td");
-    ITEMS_ROW.appendChild(items_TD); // append this TD to the global items row
-    let itemsTable = document.createElement("table");
+    let itemsTable = document.createElement("td");
     itemsTable.setAttribute('id', "table_"+new_meal.name);
     itemsTable.setAttribute('meal-id', new_meal.id);
-    items_TD.appendChild(itemsTable);
+    ITEMS_ROW.appendChild(itemsTable); // *NEW*
     return itemsTable; // The table for all this meal's items
 }
 
