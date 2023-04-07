@@ -85,6 +85,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
     let itemsTable = document.createElement("td");
     itemsTable.setAttribute('id', "table_"+new_meal.name);
     itemsTable.setAttribute('meal-id', new_meal.id);
+    itemsTable.className = 'items_table';
     ITEMS_ROW.appendChild(itemsTable); // *NEW*
     return itemsTable; // The table for all this meal's items
 }

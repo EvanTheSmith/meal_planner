@@ -28,14 +28,16 @@ body {
 } */
 
 #the_table { /* main table .. need to figure out how to style children */
-    border-left: 3px solid rgb(161, 175, 210);
-    border-right: 3px solid rgb(161, 175, 210);
     width: 1200px;
 }
 
 #meals_go_here {
     background-color: rgb(96, 120, 180);
     color: white;
+}
+
+.items_table {
+    border-left: 3px solid rgb(161, 175, 210);
 }
 
 .meal_row {
