@@ -22,10 +22,10 @@ body {
     margin: 0px 0px 17px 0px;
 }
 
-#the_table {
+/* #the_table {
     border: 1px solid black;
     width: 1200px;
-}
+} */
 
 #the_table { /* main table .. need to figure out how to style children */
     border: 1px solid black;
