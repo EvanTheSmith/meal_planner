@@ -272,7 +272,7 @@ function renderTotalCalories() { // also used to render total calories on 1st pa
 
 function deleteAll() {
     event.preventDefault();
-    let choice = confirm("Are you sure you want to delete all items?");
+    let choice = confirm("WARNING! Are you sure you want to delete all items?");
     if (choice == true) {
         let theNodes = document.querySelectorAll('[edit-id]');
         for (oneNode of theNodes) {
