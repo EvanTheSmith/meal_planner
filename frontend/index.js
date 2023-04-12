@@ -227,6 +227,7 @@ function deleteItem(element, item) {
         element.remove();
         fetch(ITEMS_URL + item.id, {method: 'DELETE'})
         .then( () => refreshCalories() )
+        clearEdits();
         resetForm();
     }
 }
