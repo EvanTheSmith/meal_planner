@@ -79,7 +79,7 @@ function createMeal(meal) { // this creates the node for a meal and appends it t
 
     let meal_TH = document.createElement("th"); // The header for this meal
     meal_TH.setAttribute('meal-id', new_meal.id);
-    meal_TH.innerText = new_meal.name + " - "+new_meal.countCalories()+" calories";
+    meal_TH.innerText = new_meal.name + ": "+new_meal.countCalories()+" calories";
     MEALS_ROW.appendChild(meal_TH); // append this TH to the global meals row
 
     let itemsTable = document.createElement("td");
