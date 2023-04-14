@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
 ///////////////////////////////
 
 function firstRender() {
-fetch(MEALS_URL)
-.then(response => response.json())
-.then(meals => renderMealsAndItems(meals));
+    fetch(MEALS_URL)
+    .then(response => response.json())
+    .then(meals => renderMealsAndItems(meals));
 }
 
 function renderMealsAndItems(theMeals) {
