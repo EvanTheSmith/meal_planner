@@ -64,21 +64,23 @@ body {
 #delete { /* all delete food buttons */
     color:red;
     display: inline;
+    text-decoration: underline;
 }
 
 #delete:hover {
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #edit { /* all edit food buttons */
     color:blue;
     display: inline;
+    text-decoration: underline;
 }
 
 #edit:hover {
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #edit_selected { /* disable colors when editing */
