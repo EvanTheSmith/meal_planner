@@ -267,7 +267,7 @@ function renderTotalCalories() { // also used to render total calories on 1st pa
     .then(response => response.json())
     .then(function({calories}) { 
         let calBox = document.getElementById("total-calories");
-        calBox.innerText = "Total Calories: "+calories;
+        calBox.innerText = "Today's Calories: "+calories;
     });
 }
 
