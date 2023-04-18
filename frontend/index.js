@@ -202,17 +202,23 @@ function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) 
 
 function editItem(item, itemsTable) { 
     let editNode = document.querySelector('[edit-id="edit"]');
-    editNode.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
-    ${item.name} <br /> 
-    ${item.calories} calories `;
+    // editNode.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
+    // ${item.name} <br /> 
+    // ${item.calories} calories `;
+
+    editNode.innerHTML = `<table>
+    <tr>
+        <td> <img src="./res/${item.kind}.png" class="food-icon"></img> </td>
+        <td> ${item.name} <br /> ${item.calories} calories 
+        <div id="edit">edit</div> <div id="delete">delete</div> </td>
+    </tr>
+    </table>`;
 
     // remake edit/delete buttons
-    let ediButton = document.createElement("div"); ediButton.id = "edit"; ediButton.innerText = "edit ";
+    let ediButton = editNode.querySelector("#edit");
     ediButton.addEventListener("click", function() {editButton(editNode, ediButton);});
-    let delButton = document.createElement("div"); delButton.id = "delete"; delButton.innerText = "delete";
+    let delButton = editNode.querySelector("#delete");
     delButton.addEventListener("click", function() {deleteItem(editNode, item)});
-    editNode.appendChild(ediButton); 
-    editNode.appendChild(delButton); 
 
     itemsTable.appendChild(editNode); // this ensures if the meal changed, the item changes columns
 }
