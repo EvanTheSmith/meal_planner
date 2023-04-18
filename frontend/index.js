@@ -202,17 +202,11 @@ function submitedEditedItem(itemID, itemName, itemCalories, itemKind, itemMeal) 
 
 function editItem(item, itemsTable) { 
     let editNode = document.querySelector('[edit-id="edit"]');
-    // editNode.innerHTML = `<img src="./res/${item.kind}.png" class="food-icon"></img> 
-    // ${item.name} <br /> 
-    // ${item.calories} calories `;
-
-    editNode.innerHTML = `<table>
-    <tr>
+    editNode.innerHTML = `<table><tr>
         <td> <img src="./res/${item.kind}.png" class="food-icon"></img> </td>
         <td> ${item.name} <br /> ${item.calories} calories 
         <div id="edit">edit</div> <div id="delete">delete</div> </td>
-    </tr>
-    </table>`;
+    </tr></table>`;
 
     // remake edit/delete buttons
     let ediButton = editNode.querySelector("#edit");
