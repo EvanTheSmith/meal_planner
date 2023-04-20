@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTotalCalories();
     let submitButton = document.getElementById("submit-button");
     submitButton.addEventListener('click', (event) => {
+        event.preventDefault();
         let itemName = document.querySelector('input[name="name"]');
         let itemCalories = document.querySelector('input[name="calories"]');
         let itemKind; document.querySelector('input[name="item_kind"]').checked ? itemKind="food" : itemKind="drink";
@@ -47,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else { 
             submitedEditedItem(itemName.id, itemName.value, itemCalories.value, itemKind, itemMeal.value);
         }
-        event.preventDefault();
        });
 });
 
