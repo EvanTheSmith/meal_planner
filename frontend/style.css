@@ -14,11 +14,13 @@ body {
 
 #top_text { /* Meal Planner App H1 */
     margin: 5px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
+    text-align: center;
 }
 
 #total-calories {
-    padding-left: 25px;
+    /* padding-left: 25px; */
+    text-align: center;
     margin: 0px 0px 17px 0px;
 }
 
