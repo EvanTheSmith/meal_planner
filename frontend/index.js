@@ -152,9 +152,10 @@ function clearEdits() { // reverts any selected edit buttons
 
 // WHEN AN ITEM IS CUED UP TO BEGIN EDITING
 function editButton(element, button) {
-    let ed = document.querySelector('[edit-id="edit"]'); if (ed) ed.setAttribute("edit-id", "none"); // clear previous edits (if any)
+    let ed = document.querySelector('[edit-id="edit"]'); 
+    if (ed !== element) showArrow(); // only show arrow when clicking edit for the first time
+    if (ed) ed.setAttribute("edit-id", "none"); // reset previous edit-id to none (if any)
 
-    showArrow();
     clearEdits();
     button.id = "edit_selected"; // select THIS edit button
 
