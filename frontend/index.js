@@ -154,6 +154,7 @@ function clearEdits() { // reverts any selected edit buttons
 function editButton(element, button) {
     let ed = document.querySelector('[edit-id="edit"]'); if (ed) ed.setAttribute("edit-id", "none"); // clear previous edits (if any)
 
+    showArrow();
     clearEdits();
     button.id = "edit_selected"; // select THIS edit button
 
@@ -283,4 +284,14 @@ function deleteAll() {
             oneNode.remove(); // delete in DOM
         }
     }
+}
+
+////////////////////////////
+///// EXTRA FUNCTIONS //////
+////////////////////////////
+
+function showArrow() {
+    const arrow = document.getElementById("arrow");
+    arrow.style.display = "inline";
+    setTimeout(() => {arrow.style.display = "none";}, "1000");
 }
